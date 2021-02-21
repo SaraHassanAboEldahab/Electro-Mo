@@ -1,0 +1,17 @@
+.rounded-btn{
+            border:none;
+            background-color: #cecece;
+            border-radius: 50%;
+            height: 35px;
+            width: 35px;
+            transition: 0.3s ease;
+            outline: 0;
+            i{
+                color: white;
+            }
+            &:hover {
+                background-color: #3fcbff;
+                transition: 0.3s ease;
+                text-decoration: none;
+            }
+}

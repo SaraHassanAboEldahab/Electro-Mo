@@ -1,0 +1,16 @@
+body{
+   padding-bottom: 20px;
+}
+
+@import "./reusable/Navbar.scss";
+
+@import "./pages/Home.scss";
+@import "./pages/ProductDetails.scss";
+@import "./pages/Categories.scss";
+@import "./pages/Forms.scss";
+
+
+
+@import "./base/buttons.scss";
+@import "./base/general.scss";
+

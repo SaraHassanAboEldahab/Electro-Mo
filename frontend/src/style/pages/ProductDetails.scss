@@ -1,0 +1,21 @@
+
+.product-details{
+    margin-top: 50px;
+    .card{
+        border:none;
+    }
+    .list-group-item{
+        button{
+            border:none;
+            border-radius: 10px;
+            height: 50px;
+            width:200px;
+            padding: 0.5rem 2rem;
+            transition: 0.3s ease;
+            color: white;
+            outline: 0;
+            font-weight: bold;
+            margin:20px 0px 0px 0px;
+        }
+    }
+}

@@ -1,0 +1,105 @@
+.categories{
+    margin-top: 50px;
+    .sidebar{
+        color: #343a40;
+        height: fit-content;
+        border: 1px solid rgba(0,0,0,.125);
+        background-color:#f2f2f2;
+        margin-bottom: 30px;
+        .category{
+            height: fit-content;
+            cursor: pointer;
+            padding-bottom: 30px;
+            transition: 0.3s ease;
+            h6,i{
+                &:hover{
+                    color:#17a2b8;
+                    transition: 0.3s ease;
+                }
+            }
+            hr{
+                @media (max-width: 767.98px) {
+                    width: 90% !important;
+                }
+            }
+        }
+    }
+}
+.category-card{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap:15px 15px;
+    grid-auto-rows: 135px;
+    @media (max-width: 991.98px) {
+        grid-template-columns: auto;
+    }
+    &__content{
+        background-color: white;
+        height: 100%;
+        position: relative;
+        border: 1px solid rgba(0,0,0,.125);
+
+    .card-overlay{
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        height: 100%;
+        z-index: 2;
+        width: 100%;
+        opacity: 0;
+        transition: 0.5s ease;
+        display: flex;
+    &:hover {
+      opacity: 1;
+    }
+    button {
+        //margin-left: 26%;
+        margin: auto;
+        border: none;
+        background-color: white;
+        border-radius: 5px;
+        height: 40px;
+        width: 120px;
+        font-size: 15px;
+        font-weight: bold;
+        a{
+            color: #0abeff !important;
+        }
+        &:hover {
+            background-color: #0abeff;
+            transition: 0.3s ease;
+            text-decoration: none;
+            a{
+                color: #fff !important;
+            }
+          }
+      }
+
+}
+    .media{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 10px 10px 0 10px;
+        img{
+            width: 45%;
+            height: 90%;
+        }
+        .media-body{
+            width: 55%;
+            height: 100%;
+            p{
+                font-size: 13px;
+                color: gray;
+                @media (max-width: 1199.98px) {
+                    font-size: 11px;
+                    margin-bottom: 0;
+                   }
+                   @media (max-width: 991.98px) {
+                     font-size: 15px;
+                     margin-bottom: 50px;
+                   }
+            }
+        }
+    }
+}
+}
