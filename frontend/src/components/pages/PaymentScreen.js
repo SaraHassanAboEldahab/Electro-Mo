@@ -21,13 +21,13 @@ const PaymentScreen = ({ history, match }) => {
     const { order, success, error, loading } = orderCreate
 
     useEffect(() => {
+
         if (!cart.shippingAddress) {
             history.push("/shipping")
         }
         dispatch(savePaymentMethod(paymentMethod))
         if (success) {
-            history.push(`/order/${order._id}`)
-            dispatch(getOrderDetails(order._id))
+            history.push(`/ordercreated`)
         }
     }, [success, history])
 

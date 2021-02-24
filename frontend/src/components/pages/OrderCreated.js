@@ -5,19 +5,15 @@ import { getOrderDetails, deliverOrder } from "../../actions/orderActions"
 import { ORDER_DELIVER_RESET } from "../../actions/types"
 import ErrorMessage from "../subComponents/ErrorMessage"
 import Loader from "../subComponents/Loader"
-const OrderScreen = ({ match, history }) => {
+const OrderCreated = ({ match, history }) => {
 
-    const orderId = match.params.id
     const dispatch = useDispatch()
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    const orderDetails = useSelector(state => state.orderDetails)
-    const { loading, order, error } = orderDetails
-
-    const orderDeliver = useSelector(state => state.orderDeliver)
-    const { loading: loadingDeliver, error: errorDeliver, success: successDeliver } = orderDeliver
+    const orderCreate = useSelector(state => state.orderCreate)
+    const { loading, order, error } = orderCreate
 
     const { cartItems } = useSelector(state => state.cart)
 
@@ -27,23 +23,14 @@ const OrderScreen = ({ match, history }) => {
             history.push("/login")
         }
 
-        if (!order || successDeliver) {
-            dispatch({ type: ORDER_DELIVER_RESET })
-            dispatch(getOrderDetails(orderId))
-        }
-
-    }, [dispatch, orderId, successDeliver, order, userInfo, history])
-
-    const deliverHandler = () => {
-        dispatch(deliverOrder(order))
-    }
+    }, [history, userInfo])
 
     return error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
         loading ? <Loader /> :
             <div className="container px-lg-0">
                 <div className="row mx-0 pt-4">
                     <div className="col-lg-7">
-                        <h5 className="head">Order:{" "} {orderId}</h5>
+                        <h5 className="head">Order:{" "} {order._id}</h5>
                         <hr />
                         <div>
                             <h4 className="mb-4">Shipping</h4>
@@ -125,22 +112,10 @@ const OrderScreen = ({ match, history }) => {
                                 Total Price
                                 <span className="span-styling ml-auto">{order.totalPrice}</span>
                             </li>
-                            {loadingDeliver && <Loader />}
-                            {userInfo && userInfo.isAdmin && !order.isDelivered && (
-                                <li className="list-group-item d-flex justify-content-center align-items-center">
-                                    <button type="button"
-                                        className="btn btn-dark"
-                                        onClick={deliverHandler}
-                                        style={{ width: "100%" }}
-                                    >
-                                        Mark As Delivered
-                                    </button>
-                                </li>
-                            )}
                         </ul>
                     </div>
                 </div>
             </div>
 }
 
-export default OrderScreen
+export default OrderCreated

@@ -19,6 +19,7 @@ import ProductEditScreen from './components/pages/ProductEditScreen'
 import ProductCreateScreen from './components/pages/ProductCreateScreen'
 import UserEditScreen from './components/pages/UserEditScreen'
 import OrdersListScreen from "./components/pages/OrdersListScreen"
+import OrderCreated from './components/pages/OrderCreated'
 
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
         <Route path="/search/:keyword/page/:pageNumber" component={Categories} exact />
         <Route path="/admin/user/:id/edit" component={UserEditScreen} />
         <Route path="/admin/orderlist" component={OrdersListScreen} />
+        <Route path="/ordercreated" component={OrderCreated} />
       </main>
       <Footer />
     </BrowserRouter>
