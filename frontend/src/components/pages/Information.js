@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { saveShippingAddress } from "../../actions/cartActions"
 import CheckSteps from './CheckSteps'
 import PlaceOrder from './PlaceOrder'
+import { set } from 'mongoose'
+import ErrorMessage from '../subComponents/ErrorMessage'
 
 const Information = ({ history }) => {
 
@@ -12,11 +14,23 @@ const Information = ({ history }) => {
     const { userInfo } = useSelector(state => state.userLogin)
 
     const [name, setName] = useState(userInfo.name)
-    const [address, setAddress] = useState(cart.shippingAddress.address)
-    const [city, setCity] = useState(cart.shippingAddress.city)
-    const [postalCode, setPostalCode] = useState(cart.shippingAddress.postalCode)
-    const [country, setCountry] = useState(cart.shippingAddress.country)
-    const [governorate, setGovernorate] = useState(cart.shippingAddress.governorate)
+    const [email, setEmail] = useState(userInfo.email)
+    const [address, setAddress] = useState("")
+    const [city, setCity] = useState("")
+    const [postalCode, setPostalCode] = useState("")
+    const [country, setCountry] = useState("")
+    const [governorate, setGovernorate] = useState("")
+
+    useEffect(() => {
+        if (cart.shippingAddress) {
+            setName(cart.shippingAddress.name)
+            setAddress(cart.shippingAddress.address)
+            setCity(cart.shippingAddress.city)
+            setPostalCode(cart.shippingAddress.postalCode)
+            setCountry(cart.shippingAddress.country)
+            setGovernorate(cart.shippingAddress.governorate)
+        }
+    }, [cart])
 
     const dispatch = useDispatch()
 
@@ -47,15 +61,16 @@ const Information = ({ history }) => {
                             Pay
                         </button>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <input
                             className="general-input mb-3"
                             type="email"
-                            value={userInfo.email}
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                         />
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck" />
-                            <label class="form-check-label" for="gridCheck">
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="gridCheck" />
+                            <label className="form-check-label">
                                 Keep me up to date on news and exclusive offers
                             </label>
                         </div>
@@ -116,7 +131,10 @@ const Information = ({ history }) => {
                                     <i className="fas fa-chevron-left mr-2"></i>
                                 Back To Cart
                                 </Link>
-                                <button className="btn btn-dark mt-1 ml-auto" type="submit">
+                                <button
+                                    className="btn btn-dark mt-1 ml-auto"
+                                    type="submit"
+                                >
                                     Continue
                                 </button>
                             </div>

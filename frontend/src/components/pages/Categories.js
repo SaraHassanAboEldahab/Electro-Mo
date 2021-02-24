@@ -28,14 +28,14 @@ const Categories = ({ match }) => {
             {error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
                 loading ? <Loader /> : (
                     <div className="row categories px-4 px-sm-0">
-                        <div className="col-md-3 sidebar pt-3 px-0">
+                        {!keyword && <div className="col-md-3 sidebar pt-3 px-0">
                             <h5 className="text-info pl-3 mb-3">Categories</h5>
                             <hr className="mb-4" />
                             <Category category="Computers & Laptops" />
                             <Category category="Smartphones & Tablets" />
                             <Category category="Accessories" />
                             <Category category="Others" />
-                        </div>
+                        </div>}
                         <div className="col-md-9  category-card">
                             {products.map((product) => {
                                 return (

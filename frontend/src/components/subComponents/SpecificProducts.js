@@ -25,12 +25,12 @@ const SpecificProducts = () => {
                     </ul>
                 </div>
                 <div className="col-lg-3" style={{ borderRight: "1px solid rgba(0,0,0,.125)" }}>
-                    <ul class="list-group list-group-flush pt-3">
-                        <li class="list-group-item">Samsung</li>
-                        <li class="list-group-item">Dell</li>
-                        <li class="list-group-item">Lenovo</li>
-                        <li class="list-group-item">HP</li>
-                        <li class="list-group-item">Xiaomi</li>
+                    <ul className="list-group list-group-flush pt-3">
+                        <li className="list-group-item">Samsung</li>
+                        <li className="list-group-item">Dell</li>
+                        <li className="list-group-item">Lenovo</li>
+                        <li className="list-group-item">HP</li>
+                        <li className="list-group-item">Xiaomi</li>
                     </ul>
                 </div>
                 <div className="col-lg-6" style={{}}>

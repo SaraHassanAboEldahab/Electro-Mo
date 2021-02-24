@@ -80,19 +80,19 @@ const Home = ({ match }) => {
                             <div className="col-lg-7">
                                 <div className="row">
                                     <div className="col-4">
-                                        <div class="card">
+                                        <div className="card">
                                             <img src="/images/camera.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
 
                                     <div className="col-4">
-                                        <div class="card" style={{ width: "100%", height: "100%", margin: "0" }}>
+                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
                                             <img src="/images/phone.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
 
                                     <div className="col-4">
-                                        <div class="card" style={{ width: "100%", height: "100%", margin: "0" }}>
+                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
                                             <img src="/images/airpods.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
@@ -100,17 +100,17 @@ const Home = ({ match }) => {
 
                                 <div className="row  mt-3">
                                     <div className="col-4">
-                                        <div class="card" style={{ width: "100%", height: "100%", margin: "0" }}>
+                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
                                             <img src="/images/playstation.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
                                     <div className="col-4">
-                                        <div class="card" style={{ width: "100%", height: "100%", margin: "0" }}>
+                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
                                             <img src="/images/mouse.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
                                     <div className="col-4">
-                                        <div class="card" style={{ width: "100%", height: "100%", margin: "0" }}>
+                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
                                             <img src="/images/alexa.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>

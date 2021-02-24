@@ -8,7 +8,18 @@ import {
     ORDER_CREATE_SUCCESS,
     ORDER_DETAILS_FAIL,
     ORDER_DETAILS_REQUEST,
-    ORDER_DETAILS_SUCCESS
+    ORDER_DETAILS_SUCCESS,
+    ORDER_PAY_REQUEST,
+    ORDER_PAY_SUCCESS,
+    ORDER_PAY_FAIL,
+    ORDER_PAY_RESET,
+    ORDERS_LIST_SUCCESS,
+    ORDERS_LIST_REQUEST,
+    ORDERS_LIST_FAIL,
+    ORDER_DELIVER_REQUEST,
+    ORDER_DELIVER_SUCCESS,
+    ORDER_DELIVER_FAIL,
+    ORDER_DELIVER_RESET
 } from "../actions/types"
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -40,6 +51,39 @@ export const orderDetailsReducer = (state = { loading: true, orderItems: [], shi
     }
 }
 
+export const orderPayReducer = (state = {}, action) => {
+    const { type, payload } = action
+    switch (type) {
+        case ORDER_PAY_REQUEST:
+            return { loading: true }
+        case ORDER_PAY_SUCCESS:
+            return { loading: false, success: true }
+        case ORDER_PAY_FAIL:
+            return { loading: false, error: payload }
+        case ORDER_PAY_RESET:
+            return {}
+        default:
+            return state;
+    }
+}
+
+
+export const orderDeliverReducer = (state = {}, action) => {
+    const { type, payload } = action
+    switch (type) {
+        case ORDER_DELIVER_REQUEST:
+            return { loading: true }
+        case ORDER_DELIVER_SUCCESS:
+            return { loading: false, success: true }
+        case ORDER_DELIVER_FAIL:
+            return { loading: false, error: payload }
+        case ORDER_DELIVER_RESET:
+            return {}
+        default:
+            return state;
+    }
+}
+
 export const myOrderListReducer = (state = { orders: [] }, action) => {
     const { type, payload } = action
     switch (type) {
@@ -51,6 +95,22 @@ export const myOrderListReducer = (state = { orders: [] }, action) => {
             return { loading: false, errors: payload }
         case MY_ORDERS_LIST_RESET:
             return { orders: [] }
+        default:
+            return state;
+    }
+}
+
+
+
+export const OrdersListReducer = (state = { orders: [] }, action) => {
+    const { type, payload } = action
+    switch (type) {
+        case ORDERS_LIST_REQUEST:
+            return { loading: true }
+        case ORDERS_LIST_SUCCESS:
+            return { loading: false, orders: payload }
+        case ORDERS_LIST_FAIL:
+            return { loading: false, errors: payload }
         default:
             return state;
     }

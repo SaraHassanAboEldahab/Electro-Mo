@@ -1,3 +1,4 @@
+import axios from "axios"
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { createProduct } from "../../actions/productActions"
@@ -13,7 +14,7 @@ const ProductCreateScreen = ({ history }) => {
     const [category, setCategory] = useState("")
     const [countInStock, setCountInStock] = useState(0)
     const [description, setDescription] = useState("")
-    const [newCategory, setNewCategory] = useState("")
+    const [uploading, setUploading] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -48,8 +49,28 @@ const ProductCreateScreen = ({ history }) => {
                 description
             }))
     }
-    const addCategoryHandler = (cat) => {
-        return [...categories, cat]
+    const uploadFileHandler = async (e) => {
+
+        const file = e.target.files[0]
+        const formData = new FormData()
+        formData.append("image", file)
+        setUploading(true)
+
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }
+            const { data } = await axios.post("/api/upload", formData, config)
+
+            setImage(data)
+            setUploading(false)
+
+        } catch (error) {
+            console.error(error.response.data)
+            setUploading(false)
+        }
     }
 
     return (
@@ -85,6 +106,16 @@ const ProductCreateScreen = ({ history }) => {
                                 value={image}
                                 onChange={(e) => setImage(e.target.value)}
                             />
+                            <label>Choose Image</label>
+                            <input
+                                type="file"
+                                className="form-control-file"
+                                id="image-file"
+                                custom="true"
+                                onChange={uploadFileHandler}
+                            />
+                            {uploading && <Loader />}
+
                             <label>Brand</label>
                             <input
                                 className="general-input"
@@ -100,8 +131,8 @@ const ProductCreateScreen = ({ history }) => {
                                 onChange={(e) => setCountInStock(e.target.value)}
                             />
                             <label>Choose Category</label>
-                            {categories.map((cat) => (
-                                <div className="form-check mb-3">
+                            {categories.map((cat, index) => (
+                                <div key={index} className="form-check mb-3">
                                     <input
                                         className="form-check-input ml-3"
                                         type="radio"

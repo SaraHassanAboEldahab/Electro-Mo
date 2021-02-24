@@ -1,20 +1,42 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { getOrderDetails } from "../../actions/orderActions"
+import { getOrderDetails, deliverOrder } from "../../actions/orderActions"
+import { ORDER_DELIVER_RESET } from "../../actions/types"
 import ErrorMessage from "../subComponents/ErrorMessage"
 import Loader from "../subComponents/Loader"
-const OrderScreen = ({ match }) => {
+const OrderScreen = ({ match, history }) => {
 
     const orderId = match.params.id
     const dispatch = useDispatch()
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
     const orderDetails = useSelector(state => state.orderDetails)
     const { loading, order, error } = orderDetails
+
+    const orderDeliver = useSelector(state => state.orderDeliver)
+    const { loading: loadingDeliver, error: errorDeliver, success: successDeliver } = orderDeliver
+
     const { cartItems } = useSelector(state => state.cart)
 
     useEffect(() => {
-        dispatch(getOrderDetails(orderId))
-    }, [dispatch])
+
+        if (!userInfo) {
+            history.push("/login")
+        }
+
+        if (!order || successDeliver) {
+            dispatch({ type: ORDER_DELIVER_RESET })
+            dispatch(getOrderDetails(orderId))
+        }
+
+    }, [dispatch, orderId, successDeliver, order, userInfo])
+
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order))
+    }
 
     return error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
         loading ? <Loader /> :
@@ -28,8 +50,8 @@ const OrderScreen = ({ match }) => {
                             <h6 className="span-styling">Name : {order.user.name}</h6>
                             <h6 className="span-styling">Email : {order.user.email}</h6>
                             <h6 className="span-styling">Address : {order.shippingAddress.address},
-                        {order.shippingAddress.city},
-                        {order.shippingAddress.country}
+                                  {order.shippingAddress.city},
+                                  {order.shippingAddress.country}
                             </h6>
                         </div>
                         <hr className="mt-3" />
@@ -42,7 +64,7 @@ const OrderScreen = ({ match }) => {
                             {order.orderItems === 0 ? <ErrorMessage>No Order Items</ErrorMessage> :
                                 <ul className="list-group list-group-flush">
                                     {order.orderItems.map((item, index) => (<>
-                                        <li key={index} className="list-group-item ">
+                                        <li key={item._id} className="list-group-item ">
                                             <div className="row">
                                                 <div className="col-md-4">
                                                     <span className="cart-items" style={{ color: "white", backgroundColor: "gray", left: "90%" }}>
@@ -80,24 +102,40 @@ const OrderScreen = ({ match }) => {
                             </li>
                             <li className=" list-group-item d-flex justify-content-between align-items-center">
                                 Items
-                          <span className="span-styling"> {cartItems.reduce((acc, item) => acc + item.qty, 0)}</span>
+                                <span className="span-styling ml-auto"> {cartItems.reduce((acc, item) => acc + item.qty, 0)}</span>
                             </li>
-                            <li className="list-group-item d-flex justify-content-between align-items-center pr-1">
+                            <li className="list-group-item d-flex align-items-center pr-1">
                                 Shipping Method
-                        <small className="span-styling" style={{ marginLeft: "50%" }}>{order.shippingMethod}</small>
+                                <small className="span-styling ml-auto" style={{ width: "30%" }}>{order.shippingMethod}</small>
                             </li>
-                            <li className="list-group-item d-flex justify-content-between align-items-center">
+                            <li className="list-group-item d-flex align-items-center">
                                 IsPaid
-                        <span className="span-styling">No</span>
+                                <span className="span-styling ml-auto">No</span>
                             </li>
-                            <li className="list-group-item d-flex justify-content-between align-items-center">
+                            <li className="list-group-item d-flex  align-items-center">
                                 Is Delivered
-                        <span className="span-styling">On Way</span>
+                                {order.isDelivered ? <span className="span-styling ml-auto">
+                                    Delivered At <br /> {order.deliveredAt.substring(0, 10)}
+                                </span> :
+                                    <span className="span-styling ml-auto">On Way </span>
+                                }
                             </li>
-                            <li className="list-group-item d-flex justify-content-between align-items-center">
+                            <li className="list-group-item d-flex align-items-center">
                                 Total Price
-                        <span className="span-styling">{order.totalPrice}</span>
+                                <span className="span-styling ml-auto">{order.totalPrice}</span>
                             </li>
+                            {loadingDeliver && <Loader />}
+                            {userInfo && userInfo.isAdmin && !order.isDelivered && (
+                                <li className="list-group-item d-flex justify-content-center align-items-center">
+                                    <button type="button"
+                                        className="btn btn-dark"
+                                        onClick={deliverHandler}
+                                        style={{ width: "100%" }}
+                                    >
+                                        Mark As Delivered
+                                    </button>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>

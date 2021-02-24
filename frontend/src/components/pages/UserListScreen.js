@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Button, Table } from "react-bootstrap"
 import { LinkContainer } from "react-router-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { usersList } from "../../actions/userActions"
+import { usersList, deleteUser } from "../../actions/userActions"
 import ErrorMessage from "../subComponents/ErrorMessage"
 import Loader from "../subComponents/Loader"
 
@@ -17,16 +17,21 @@ const UserListScreen = ({ history }) => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
+    const userDelete = useSelector(state => state.userDelete)
+    const { success: successDelete } = userDelete
+
     useEffect(() => {
         if (userInfo && userInfo.isAdmin) {
             dispatch(usersList())
         } else {
             history.push("/login")
         }
-    }, [dispatch, history])
+    }, [dispatch, history, successDelete, userInfo])
 
-    const deleteHandler = () => {
-        console.log("delete")
+    const deleteHandler = (id) => {
+        if (window.confirm("Are Yoy Sure ^_^")) {
+            dispatch(deleteUser(id))
+        }
     }
 
     return (
@@ -49,8 +54,8 @@ const UserListScreen = ({ history }) => {
                             {users.map(user => (
                                 <tr key={user._id}>
                                     <td className="text-center">{user._id}</td>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
+                                    <td className="text-center">{user.name}</td>
+                                    <td className="text-center">{user.email}</td>
                                     <td className="text-center">
                                         {user.isAdmin ?
                                             <i className="fas fa-check" style={{ color: "green" }}></i> :
@@ -59,12 +64,16 @@ const UserListScreen = ({ history }) => {
                                     </td>
 
                                     <td className="text-center">
-                                        <LinkContainer to={`/admin/user/${user._id}`}>
+                                        <LinkContainer to={`/admin/user/${user._id}/edit`}>
                                             <Button className="btn-sm" variant="info">
                                                 <i className="fas fa-edit"></i>
                                             </Button>
                                         </LinkContainer>
-                                        <Button className="btn-sm ml-3" variant="danger" onClick={deleteHandler(user._id)}>
+                                        <Button
+                                            className="btn-sm ml-3"
+                                            variant="danger"
+                                            onClick={() => deleteHandler(user._id)}
+                                        >
                                             <i className="fas fa-trash"></i>
                                         </Button>
                                     </td>

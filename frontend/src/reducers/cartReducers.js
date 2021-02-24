@@ -5,7 +5,6 @@ import {
     CART_SAVE_SHIPPING_ADDRESS,
     CART_SAVE_SHIPPING_METHOD,
     CART_SAVE_TOTAL_PRICE,
-    USER_LOGOUT
 } from "../actions/types"
 
 export const cartReducer = (state = { cartItems: [], shippingAddress: {}, paymentMethod: "PayPal" }, action) => {

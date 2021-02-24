@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchProductDetails, updateProduct } from "../../actions/productActions"
 import ErrorMessage from "../subComponents/ErrorMessage"
@@ -15,6 +16,7 @@ const ProductEditScreen = ({ history, match }) => {
     const [category, setCategory] = useState("")
     const [countInStock, setCountInStock] = useState(10)
     const [description, setDescription] = useState("")
+    const [uploading, setUploading] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -36,7 +38,7 @@ const ProductEditScreen = ({ history, match }) => {
             dispatch({ type: PRODUCT_UPDATE_RESET })
             history.push("/admin/productlist")
         } else {
-            if (!product.name || product._id !== productId) {
+            if (!product || product._id !== productId) {
                 dispatch(fetchProductDetails(productId))
             } else {
                 setName(product.name)
@@ -64,6 +66,29 @@ const ProductEditScreen = ({ history, match }) => {
                 countInStock,
                 description
             }))
+    }
+
+    const uploadFileHandler = async (e) => {
+
+        const file = e.target.files[0]
+        const formData = new FormData()
+        formData.append("image", file)
+        setUploading(true)
+
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }
+            const { data } = await axios.post("/api/upload", formData, config)
+            setImage(data)
+            setUploading(false)
+
+        } catch (error) {
+            console.error(error)
+            setUploading(false)
+        }
     }
 
     return (
@@ -96,11 +121,19 @@ const ProductEditScreen = ({ history, match }) => {
                             />
                             <label>Image</label>
                             <input
-                                className="general-input"
+                                className="general-input form-control"
                                 type="text"
                                 value={image}
+                                id="inputGroupFileAddon01"
                                 onChange={(e) => setImage(e.target.value)}
                             />
+                            <input
+                                type="file"
+                                id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"
+                                custom
+                                onChange={uploadFileHandler}
+                            />
+                            {uploading && <Loader />}
                             <label>Brand</label>
                             <input
                                 className="general-input"

@@ -38,7 +38,7 @@ const Navbar = ({ history }) => {
                     <span className="navbar-toggler-icon" />
                 </button>
 
-                <NavLink className="navbar-brand mr-sm-5" activeClassName="active" to="/">Mo-Shop</NavLink>
+                <NavLink className="navbar-brand mr-sm-5 active" activeclassname="active" to="/">Mo-Shop</NavLink>
 
                 <form onSubmit={searchHandler} className="form-inline d-flex justify-content-center">
                     <input
@@ -67,7 +67,7 @@ const Navbar = ({ history }) => {
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="false"
-                                    activeClassName="active"
+                                    activeclassname="active"
                                 >
                                     {userInfo.name.toUpperCase()}
                                 </a>
@@ -112,13 +112,13 @@ const Navbar = ({ history }) => {
                             </li> :
                             <>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" activeClassName="active" to="/register">
+                                    <NavLink className="nav-link" activeclassname="active" to="/register">
                                         <i className="fas fa-user-times mr-1"></i>
                                         Register
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" activeClassName="active" to="/login">
+                                    <NavLink className="nav-link" activeclassname="active" to="/login">
                                         <i className="fas fa-user-check mr-1"></i>
                                         Sign in
                                     </NavLink>

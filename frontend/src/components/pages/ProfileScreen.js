@@ -22,8 +22,8 @@ const ProfileScreen = ({ history }) => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    const userUpdate = useSelector(state => state.userUpdate)
-    const { success } = userUpdate
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile)
+    const { success } = userUpdateProfile
 
     const myOrderList = useSelector(state => state.myOrderList)
     const { loading: loadingOrders, orders, error: errorOrders } = myOrderList
@@ -118,7 +118,7 @@ const ProfileScreen = ({ history }) => {
                                         <tr key={order._id}>
                                             <td>{order._id}</td>
                                             <td>{order.createdAt.substring(0, 10)}</td>
-                                            <td>{order.totalPrice}</td>
+                                            <td>${order.totalPrice}</td>
                                             <td>
                                                 {order.isPaid ?
                                                     order.paidAt.substring(0, 10) :
@@ -142,7 +142,6 @@ const ProfileScreen = ({ history }) => {
                                 </tbody>
                             </Table>
                     }
-
                 </div>
             </div>
         </div>
