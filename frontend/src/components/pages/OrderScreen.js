@@ -13,8 +13,8 @@ const OrderScreen = ({ match, history }) => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    const orderCreate = useSelector(state => state.orderCreate)
-    const { loading, order, error } = orderCreate
+    const orderDetails = useSelector(state => state.orderDetails)
+    const { loading, order, error } = orderDetails
 
     const orderDeliver = useSelector(state => state.orderDeliver)
     const { loading: loadingDeliver, error: errorDeliver, success: successDeliver } = orderDeliver

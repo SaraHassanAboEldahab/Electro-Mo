@@ -27,8 +27,9 @@ const PaymentScreen = ({ history, match }) => {
         dispatch(savePaymentMethod(paymentMethod))
         if (success) {
             history.push(`/order/${order._id}`)
+            dispatch(getOrderDetails(order._id))
         }
-    }, [success, history, paymentMethod])
+    }, [success, history])
 
     const placeOrderHandler = (e) => {
         e.preventDefault()
