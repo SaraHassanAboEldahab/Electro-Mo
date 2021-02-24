@@ -25,6 +25,7 @@ const PaymentScreen = ({ history }) => {
         dispatch(savePaymentMethod(paymentMethod))
         if (success) {
             history.push(`/order/${order._id}`)
+            dispatch(getOrderDetails(order._id))
         }
     }, [success, history])
 
@@ -37,7 +38,6 @@ const PaymentScreen = ({ history }) => {
             totalPrice: cart.totalPrice,
             shippingMethod: cart.shippingMethod,
         }))
-        dispatch(getOrderDetails(order_.id))
     }
 
     return (
