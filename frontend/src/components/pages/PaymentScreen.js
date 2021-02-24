@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { savePaymentMethod } from "../../actions/cartActions"
-import { createOrder } from "../../actions/orderActions"
+import { createOrder, getOrderDetails } from "../../actions/orderActions"
 import CheckSteps from './CheckSteps'
 import ErrorMessage from "../subComponents/ErrorMessage"
 
@@ -37,6 +37,7 @@ const PaymentScreen = ({ history }) => {
             totalPrice: cart.totalPrice,
             shippingMethod: cart.shippingMethod,
         }))
+        dispatch(getOrderDetails(order_.id))
     }
 
     return (
