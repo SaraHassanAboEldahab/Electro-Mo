@@ -27,7 +27,7 @@ const PaymentScreen = ({ history, match }) => {
             history.push(`/order/${order._id}`)
             dispatch(getOrderDetails(match.params.id))
         }
-    }, [success, history])
+    }, [success, history, match])
 
     const placeOrderHandler = (e) => {
         e.preventDefault()
