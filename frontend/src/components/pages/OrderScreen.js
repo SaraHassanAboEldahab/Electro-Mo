@@ -47,9 +47,10 @@ const OrderScreen = ({ match, history }) => {
                         <hr />
                         <div>
                             <h4 className="mb-4">Shipping</h4>
-                            <h6 className="span-styling">Name : {userInfo.name}</h6>
-                            <h6 className="span-styling">Email : {userInfo.email}</h6>
-                            <h6 className="span-styling">Address : {order.shippingAddress.address},
+                            <h6 className="span-styling">Name : {order.user.name}</h6>
+                            <h6 className="span-styling">Email : {order.user.email}</h6>
+                            <h6 className="span-styling">Address :
+                                  {order.shippingAddress.address},
                                   {order.shippingAddress.city},
                                   {order.shippingAddress.country}
                             </h6>
