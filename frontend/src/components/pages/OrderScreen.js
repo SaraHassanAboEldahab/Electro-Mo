@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { getOrderDetails, deliverOrder } from "../../actions/orderActions"
-import { ORDER_DELIVER_RESET, ORDER_DETAILS_RESET } from "../../actions/types"
+import { ORDER_DELIVER_RESET } from "../../actions/types"
 import ErrorMessage from "../subComponents/ErrorMessage"
 import Loader from "../subComponents/Loader"
 const OrderScreen = ({ match, history }) => {
@@ -13,8 +13,8 @@ const OrderScreen = ({ match, history }) => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    const orderDetails = useSelector(state => state.orderDetails)
-    const { loading, order, error } = orderDetails
+    const orderCreate = useSelector(state => state.orderCreate)
+    const { loading, order, error } = orderCreate
 
     const orderDeliver = useSelector(state => state.orderDeliver)
     const { loading: loadingDeliver, error: errorDeliver, success: successDeliver } = orderDeliver
@@ -26,11 +26,8 @@ const OrderScreen = ({ match, history }) => {
         if (!userInfo) {
             history.push("/login")
         }
-        if (!order) {
-            dispatch({ type: ORDER_DETAILS_RESET })
-            dispatch(getOrderDetails(orderId))
-        }
-        if (successDeliver) {
+
+        if (!order || successDeliver) {
             dispatch({ type: ORDER_DELIVER_RESET })
             dispatch(getOrderDetails(orderId))
         }
@@ -50,8 +47,8 @@ const OrderScreen = ({ match, history }) => {
                         <hr />
                         <div>
                             <h4 className="mb-4">Shipping</h4>
-                            <h6 className="span-styling">Name : {order.user.name}</h6>
-                            <h6 className="span-styling">Email : {order.user.email}</h6>
+                            <h6 className="span-styling">Name : {userInfo.name}</h6>
+                            <h6 className="span-styling">Email : {userInfo.email}</h6>
                             <h6 className="span-styling">Address :
                                   {order.shippingAddress.address},
                                   {order.shippingAddress.city},
