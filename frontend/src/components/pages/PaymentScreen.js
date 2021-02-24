@@ -5,7 +5,7 @@ import { createOrder, getOrderDetails } from "../../actions/orderActions"
 import CheckSteps from './CheckSteps'
 import ErrorMessage from "../subComponents/ErrorMessage"
 
-const PaymentScreen = ({ history }) => {
+const PaymentScreen = ({ history, match }) => {
 
     const cart = useSelector(state => state.cart)
     //const { userInfo } = useSelector(state => state.userLogin)
@@ -25,7 +25,7 @@ const PaymentScreen = ({ history }) => {
         dispatch(savePaymentMethod(paymentMethod))
         if (success) {
             history.push(`/order/${order._id}`)
-            dispatch(getOrderDetails(order._id))
+            dispatch(getOrderDetails(match.params.id))
         }
     }, [success, history])
 
