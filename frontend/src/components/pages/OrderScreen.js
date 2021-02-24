@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { getOrderDetails, deliverOrder } from "../../actions/orderActions"
-import { ORDER_DELIVER_RESET } from "../../actions/types"
+import { ORDER_DELIVER_RESET, ORDER_DETAILS_RESET } from "../../actions/types"
 import ErrorMessage from "../subComponents/ErrorMessage"
 import Loader from "../subComponents/Loader"
 const OrderScreen = ({ match, history }) => {
@@ -26,8 +26,11 @@ const OrderScreen = ({ match, history }) => {
         if (!userInfo) {
             history.push("/login")
         }
-
-        if (!order || successDeliver) {
+        if (!order) {
+            dispatch({ type: ORDER_DETAILS_RESET })
+            dispatch(getOrderDetails(orderId))
+        }
+        if (successDeliver) {
             dispatch({ type: ORDER_DELIVER_RESET })
             dispatch(getOrderDetails(orderId))
         }
