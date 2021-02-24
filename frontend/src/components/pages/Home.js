@@ -70,8 +70,8 @@ const Home = ({ match }) => {
                                 </div>
                             </div>
                         </div>
-                        <TrendedProducts products={products} />
 
+                        <TrendedProducts products={products} />
 
                         <div className="row" style={{ height: "fit-content", margin: "100px 0px" }}>
                             <div className="col-lg-5 mb-5 mb-lg-0" style={{ height: "100%" }}>
