@@ -1,26 +1,41 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 
-const SpecificProducts = () => {
+const SpecificProducts = ({ categories }) => {
     return (
         <div className="container specific-products">
-            <h4 className="head">Featured Products</h4>
+            <h4 className="head">Some Of Our Products</h4>
             <hr />
             <div className="row mx-0" style={{ border: "1px solid rgba(0,0,0,.125)" }}>
                 <div className="col-lg-3 py-3" style={{ backgroundColor: "#f9f9f9" }}>
-                    <h6>Computers</h6>
+                    <Link to={`/category/${categories[0]._id}`}>
+                        <h6>Computers & Laptops</h6>
+                    </Link>
                     <ul>
-                        <li>Desktop Computers</li>
+                        <li>Keyboards</li>
                         <li>Printers & Ink</li>
-                        <li>Software</li>
-                        <li>Computer Accesories</li>
-                        <li>Waterproof Headphones</li>
-                        <li>Home Audio</li>
+                        <li>Mice</li>
                     </ul>
-                    <h6>Laptops & Accesories</h6>
+                    <Link to={`/category/${categories[1]._id}`}>
+                        <h6>Electronics</h6>
+                    </Link>
                     <ul>
-                        <li>All Laptops</li>
-                        <li>Laptops by Brand</li>
-                        <li>Power supply</li>
+                        <li>Power Bank</li>
+                    </ul>
+
+                    <Link to={`/category/${categories[2]._id}`}>
+                        <h6>Smartphones & Tablets</h6>
+                    </Link>
+                    <ul>
+                        <li> Phone USB Cable</li>
+                        <li>Mobile Phone Charger</li>
+                    </ul>
+
+                    <Link to={`/category/${categories[3]._id}`}>
+                        <h6>Accessories</h6>
+                    </Link>
+                    <ul>
+                        <li>Headphones</li>
                         <li>Laptop Bags</li>
                     </ul>
                 </div>

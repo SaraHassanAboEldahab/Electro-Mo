@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import { Link } from "react-router-dom"
 
-const Category = ({ category }) => {
+const Category = ({ categoryName, categoryId }) => {
     const [open, setOpen] = useState(false)
     return (
         <div className="category">
             <div className="d-flex px-3">
-                <h6 className="p-2"> {category}</h6>
+                <Link to={`/category/${categoryId}`}>
+                    <h6 className="p-2"> {categoryName}</h6>
+                </Link>
                 <h6 className="ml-auto">
                     <i onClick={() => setOpen(!open)}
                         className={open ? "fas fa-chevron-up mt-2" : "fas fa-chevron-down mt-2"}></i>

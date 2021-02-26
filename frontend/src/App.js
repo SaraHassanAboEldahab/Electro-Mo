@@ -20,6 +20,8 @@ import ProductCreateScreen from './components/pages/ProductCreateScreen'
 import UserEditScreen from './components/pages/UserEditScreen'
 import OrdersListScreen from "./components/pages/OrdersListScreen"
 import OrderCreated from './components/pages/OrderCreated'
+import CreateCategory from './components/pages/CreateCategory'
+import CategoryProducts from "./components/pages/CategoryProducts"
 
 
 const App = () => {
@@ -49,6 +51,8 @@ const App = () => {
         <Route path="/admin/user/:id/edit" component={UserEditScreen} />
         <Route path="/admin/orderlist" component={OrdersListScreen} />
         <Route path="/ordercreated" component={OrderCreated} />
+        <Route path="/admin/createcategory" component={CreateCategory} />
+        <Route path="/category/:id" component={CategoryProducts} exact />
       </main>
       <Footer />
     </BrowserRouter>

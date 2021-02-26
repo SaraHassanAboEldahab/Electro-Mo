@@ -19,6 +19,9 @@ import {
     PRODUCT_CREATE_REVIEW_REQUEST,
     PRODUCT_CREATE_REVIEW_SUCCESS,
     PRODUCT_CREATE_REVIEW_FAIL,
+    FETCH_ALL_PRODUCTS_REQUEST,
+    FETCH_ALL_PRODUCTS_SUCCESS,
+    FETCH_ALL_PRODUCTS_FAIL,
 } from "./types"
 
 export const fetchProductsList = (keyword = "", pageNumber = "") => async (dispatch) => {
@@ -170,3 +173,21 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
     }
 }
 
+
+export const fetchAllProducts = () => async (dispatch) => {
+    try {
+        dispatch({ type: FETCH_ALL_PRODUCTS_REQUEST })
+        const { data } = await axios.get(`/api/products/allproducts`)
+
+        dispatch({
+            type: FETCH_ALL_PRODUCTS_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: FETCH_ALL_PRODUCTS_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message : error.message
+        })
+    }
+}

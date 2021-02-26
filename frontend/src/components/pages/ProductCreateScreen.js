@@ -1,7 +1,9 @@
 import axios from "axios"
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { createProduct } from "../../actions/productActions"
+import { fetchCategories } from "../../actions/categoryActions"
 import ErrorMessage from "../subComponents/ErrorMessage"
 import Loader from "../subComponents/Loader"
 import { PRODUCT_CREATE_RESET } from "../../actions/types"
@@ -11,24 +13,24 @@ const ProductCreateScreen = ({ history }) => {
     const [price, setPrice] = useState(0)
     const [image, setImage] = useState("")
     const [brand, setBrand] = useState("")
-    const [category, setCategory] = useState("")
+    const [category, setCategory] = useState({})
     const [countInStock, setCountInStock] = useState(0)
     const [description, setDescription] = useState("")
     const [uploading, setUploading] = useState(false)
 
+
     const dispatch = useDispatch()
 
     const productCreate = useSelector(state => state.productCreate)
-    const { loading, error, success } = productCreate
+    const { loading, error, success, product } = productCreate
 
-    const categories = [
-        "Computers & Laptops",
-        " Mobiles",
-        "electronic devices",
-        "Electronics"
-    ]
-    //const checked = categories.find(cat => cat === category)
+    const categoriesList = useSelector(state => state.categoriesList)
+    const { categories, loading: catLoading, error: catError } = categoriesList
+
+
+
     useEffect(() => {
+        dispatch(fetchCategories())
         if (success) {
             dispatch({ type: PRODUCT_CREATE_RESET })
             history.push("/admin/productlist")
@@ -131,20 +133,22 @@ const ProductCreateScreen = ({ history }) => {
                                 onChange={(e) => setCountInStock(e.target.value)}
                             />
                             <label>Choose Category</label>
-                            {categories.map((cat, index) => (
-                                <div key={index} className="form-check mb-3">
-                                    <input
-                                        className="form-check-input ml-3"
-                                        type="radio"
-                                        name="category"
-                                        id="category"
-                                        value={cat}
-                                        checked={category === cat}
-                                        onChange={(e) => setCategory(e.target.value)}
-                                    />
-                                    <label className="ml-5 span-styling form-check-label mt-0">{cat}</label>
-                                </div>
-                            ))}
+                            {catLoading ? <Loader /> : catError ? <ErrorMessage variant="danger">{catError}</ErrorMessage>
+                                : categories.map((cat) => (
+                                    <div key={cat._id} className="form-check mb-3">
+                                        <input
+                                            className="form-check-input ml-3"
+                                            type="radio"
+                                            name="category"
+                                            id="category"
+                                            value={cat.name}
+                                            onChange={(e) => setCategory({ _id: cat._id, name: e.target.value })}
+                                        />
+                                        <label className="ml-5 span-styling form-check-label mt-0">{cat.name}</label>
+                                    </div>
+                                ))}
+                            <Link to="/admin/createcategory">Add New Category</Link>
+
                             <label>Write Description</label>
                             <textarea
                                 className="general-input"

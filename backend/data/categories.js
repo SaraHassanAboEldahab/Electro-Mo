@@ -3,6 +3,9 @@ const categories = [
         name: "Computers & Laptops",
     },
     {
+        name: "Electronics"
+    },
+    {
         name: "Smartphones & Tablets"
     },
     {

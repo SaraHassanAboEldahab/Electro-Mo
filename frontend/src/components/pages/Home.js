@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { fetchProductsList } from "../../actions/productActions"
+import { fetchCategories } from "../../actions/categoryActions"
+
 //components importing
 import ProductCard from "../subComponents/ProductCard"
 import TrendedProducts from "../subComponents/TrendedProducts"
@@ -16,7 +18,11 @@ const Home = ({ match }) => {
     const productsList = useSelector((state) => state.productsList)
     const { loading, error, products } = productsList
 
+    const categoriesList = useSelector(state => state.categoriesList)
+    const { categories, loading: catLoading, error: catError } = categoriesList
+
     useEffect(() => {
+        dispatch(fetchCategories())
         dispatch(fetchProductsList(keyword))
     }, [dispatch])
 
@@ -27,7 +33,7 @@ const Home = ({ match }) => {
                     <>
                         <div className="row">
                             <div className="col-lg-8 home__img">
-                                <img src="/images/blog.jpg" alt="" />
+                                <img src="/images/s4.jpg" alt="" />
                                 <h3>Mo-Shop is an e-commerce web app </h3>
                                 <button>Shop Now</button>
                             </div>
@@ -74,50 +80,50 @@ const Home = ({ match }) => {
                         <TrendedProducts products={products} />
 
                         <div className="row" style={{ height: "fit-content", margin: "100px 0px" }}>
-                            <div className="col-lg-5 mb-5 mb-lg-0" style={{ height: "100%" }}>
-                                <img style={{ width: "100%", height: "310px" }} src="/images/custom.png" alt="..." />
+                            <div className="col-lg-5 mb-5 mb-lg-0" style={{ height: "350px" }}>
+                                <img style={{ width: "100%", height: "100%" }} src="/images/c8.jpg" alt="..." />
                             </div>
-                            <div className="col-lg-7">
-                                <div className="row">
+                            <div className="col-lg-7" style={{ height: "350px" }}>
+                                <div className="row" style={{ height: "45%" }}>
                                     <div className="col-4">
-                                        <div className="card">
-                                            <img src="/images/camera.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
+                                            <img src="/images/e4.png" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
 
                                     <div className="col-4">
                                         <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/phone.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                            <img src="/images/c5.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
 
                                     <div className="col-4">
                                         <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/airpods.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                            <img src="/images/m6.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="row  mt-3">
+                                <div className="row " style={{ height: "45%", marginTop: "7%" }}>
                                     <div className="col-4">
                                         <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/playstation.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                            <img src="/images/m3.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
                                     <div className="col-4">
                                         <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/mouse.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                            <img src="/images/a3.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
                                     <div className="col-4">
                                         <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/alexa.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                            <img src="/images/c6.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <SpecificProducts />
+                        <SpecificProducts categories={categories} />
                         <FeaturedProducts />
                     </>
                 ) : null

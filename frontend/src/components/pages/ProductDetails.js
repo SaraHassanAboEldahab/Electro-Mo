@@ -57,7 +57,7 @@ const ProductDetails = ({ match, history }) => {
     }
     return (
         <div className="container">
-            {loading ? <Loader /> : error ? <ErrorMessage /> :
+            {loading ? <Loader /> : error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
                 (<>
                     <div className="row product-details mx-0">
                         <div className="col-lg-6">

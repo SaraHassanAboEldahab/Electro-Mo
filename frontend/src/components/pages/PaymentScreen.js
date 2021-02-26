@@ -26,9 +26,9 @@ const PaymentScreen = ({ history, match }) => {
             history.push("/shipping")
         }
         dispatch(savePaymentMethod(paymentMethod))
-        if (success) {
-            history.push(`/ordercreated`)
-        }
+        /*  if (success) {
+              history.push(`/ordercreated`)
+          }*/
     }, [success, history])
 
     const placeOrderHandler = (e) => {
@@ -40,6 +40,7 @@ const PaymentScreen = ({ history, match }) => {
             totalPrice: cart.totalPrice,
             shippingMethod: cart.shippingMethod,
         }))
+        history.push(`/ordercreated`)
     }
 
     return (

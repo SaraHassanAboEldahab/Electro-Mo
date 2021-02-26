@@ -17,8 +17,17 @@ const getProducts = asyncHandler(async (req, res) => {
     } : {}
 
     const count = await Product.countDocuments({ ...keyword })
-    const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1))
+    const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1)).populate("category", "name")
     res.json({ products, page, pages: Math.ceil(count / pageSize) })
+})
+
+// @desc Fetch all products
+// @route GET /api/products
+// @access Public
+const getAllProducts = asyncHandler(async (req, res) => {
+
+    const products = await Product.find({}).populate("category", "name")
+    res.json(products)
 })
 
 
@@ -26,7 +35,7 @@ const getProducts = asyncHandler(async (req, res) => {
 // @route GET /api/products/:id
 // @access Public
 const getProductById = asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id)
+    const product = await Product.findById(req.params.id).populate("category", "name")
     if (product) {
         return res.json(product)
     }
@@ -59,7 +68,10 @@ const createProduct = asyncHandler(async (req, res) => {
         name: req.body.name,
         price: req.body.price,
         user: req.user._id,
-        category: req.body.category,
+        category: {
+            _id: req.body.category._id,
+            name: req.body.category.name
+        },
         brand: req.body.brand,
         image: req.body.image,
         countInStock: req.body.countInStock,
@@ -143,4 +155,4 @@ const createReview = asyncHandler(async (req, res) => {
 })
 
 
-export { getProducts, getProductById, deleteProduct, createProduct, updateProduct, createReview }
+export { getProducts, getProductById, deleteProduct, createProduct, updateProduct, createReview, getAllProducts }

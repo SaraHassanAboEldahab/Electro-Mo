@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
-import { productsReducer, productDetailsReducer, productDeleteReducer, productCreateReducer, productUpdateReducer, productReviewCreateReducer } from "./reducers/productReducers"
+import { productsReducer, productDetailsReducer, productDeleteReducer, productCreateReducer, productUpdateReducer, productReviewCreateReducer, allProductsReducer } from "./reducers/productReducers"
 import { cartReducer } from "./reducers/cartReducers"
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userDeleteReducer, userListReducer, userUpdateReducer } from "./reducers/userReducers"
 import {
@@ -12,6 +12,8 @@ import {
     OrdersListReducer,
     orderDeliverReducer
 } from "./reducers/orderReducers"
+
+import { categoriesListReducer, categoryCreateReducer, categoryReducer } from "./reducers/categoryReducers"
 
 const reducer = combineReducers({
     productsList: productsReducer,
@@ -33,7 +35,11 @@ const reducer = combineReducers({
     userDelete: userDeleteReducer,
     userUpdate: userUpdateReducer,
     OrdersList: OrdersListReducer,
-    orderDeliver: orderDeliverReducer
+    orderDeliver: orderDeliverReducer,
+    categoriesList: categoriesListReducer,
+    categoryCreate: categoryCreateReducer,
+    categoryDetails: categoryReducer,
+    allProducts: allProductsReducer
 })
 //here we load or get the data from local storage to put them into initial state of our store
 const cartItemsFromLocalStorage = localStorage.getItem("cartItems") ?
