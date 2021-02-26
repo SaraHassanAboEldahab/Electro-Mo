@@ -13,8 +13,8 @@ const Information = ({ history }) => {
 
     const { userInfo } = useSelector(state => state.userLogin)
 
-    const [name, setName] = useState(userInfo.name)
-    const [email, setEmail] = useState(userInfo.email)
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
     const [postalCode, setPostalCode] = useState("")
@@ -22,15 +22,21 @@ const Information = ({ history }) => {
     const [governorate, setGovernorate] = useState("")
 
     useEffect(() => {
+
+        if (!userInfo) {
+            history.push("/login")
+        } else {
+            setName(userInfo.name)
+            setEmail(userInfo.email)
+        }
         if (cart.shippingAddress) {
-            setName(cart.shippingAddress.name)
             setAddress(cart.shippingAddress.address)
             setCity(cart.shippingAddress.city)
             setPostalCode(cart.shippingAddress.postalCode)
             setCountry(cart.shippingAddress.country)
             setGovernorate(cart.shippingAddress.governorate)
         }
-    }, [cart])
+    }, [cart, userInfo])
 
     const dispatch = useDispatch()
 

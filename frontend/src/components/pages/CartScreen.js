@@ -8,8 +8,12 @@ import ErrorMessage from '../subComponents/ErrorMessage'
 const CartScreen = ({ match, location, history }) => {
 
     const productId = match.params.id
+
     const qty = location.search ? Number(location.search.split("=")[1]) : 1
+
     const dispatch = useDispatch()
+
+    const { userInfo } = useSelector(state => state.userLogin)
     const { cartItems } = useSelector((state) => state.cart)
 
     useEffect(() => {
@@ -23,7 +27,7 @@ const CartScreen = ({ match, location, history }) => {
     }
 
     const checkOutHandler = () => {
-        history.push("/login?redirect=information")
+        history.push("/information")
     }
     return (
         <div className="container">
