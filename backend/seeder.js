@@ -26,17 +26,14 @@ const importData = async () => {
 
         const createdCategories = await Category.insertMany(categories)
         const sampleProducts = products.map((product, index) => {
-            if (index < 4) {
+            if (index === 0 || index % 3 === 0) {
                 return { ...product, user: adminUser, category: createdCategories[0]._id }
             }
-            if (index < 7) {
+            if (index === 1 || index === 4 || index === 7 || index === 10 || index === 13 || index === 16 || index === 19 || index === 22 || index === 25 || index === 26) {
                 return { ...product, user: adminUser, category: createdCategories[1]._id }
             }
-            if (index < 12) {
+            if (index === 2 || index === 5 || index === 8 || index === 11 || index === 14 || index === 17 || index === 20 || index === 23) {
                 return { ...product, user: adminUser, category: createdCategories[2]._id }
-            }
-            if (index < 18) {
-                return { ...product, user: adminUser, category: createdCategories[3]._id }
             }
         })
 

@@ -1,0 +1,14 @@
+.wishlist{
+  .wishlist-img{
+   img{
+    @media (max-width: 768px) {
+      width:25% !important;
+     }
+   }
+  }
+  .like-quantity{
+    @media (max-width: 768px) {
+      width:20% !important;
+     }
+  }
+}

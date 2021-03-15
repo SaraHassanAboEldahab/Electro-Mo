@@ -1,5 +1,5 @@
 body{
-   padding-bottom: 20px;
+   padding-top: 50px;
 }
 
 @import "./reusable/Navbar.scss";
@@ -8,7 +8,7 @@ body{
 @import "./pages/ProductDetails.scss";
 @import "./pages/Categories.scss";
 @import "./pages/Forms.scss";
-
+@import "./pages/Like.scss";
 
 
 @import "./base/buttons.scss";

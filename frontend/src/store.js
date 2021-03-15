@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
 import { productsReducer, productDetailsReducer, productDeleteReducer, productCreateReducer, productUpdateReducer, productReviewCreateReducer, allProductsReducer } from "./reducers/productReducers"
-import { cartReducer } from "./reducers/cartReducers"
+import { cartReducer, likeReducer } from "./reducers/cartReducers"
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userDeleteReducer, userListReducer, userUpdateReducer } from "./reducers/userReducers"
 import {
     orderCreateReducer,
@@ -39,11 +39,15 @@ const reducer = combineReducers({
     categoriesList: categoriesListReducer,
     categoryCreate: categoryCreateReducer,
     categoryDetails: categoryReducer,
-    allProducts: allProductsReducer
+    allProducts: allProductsReducer,
+    like: likeReducer
 })
 //here we load or get the data from local storage to put them into initial state of our store
 const cartItemsFromLocalStorage = localStorage.getItem("cartItems") ?
     JSON.parse(localStorage.getItem("cartItems")) : []
+
+const likeItemsFromLocalStorage = localStorage.getItem("likeItems") ?
+    JSON.parse(localStorage.getItem("likeItems")) : []
 
 const userInfoFromLocalStorage = localStorage.getItem("userInfo") ?
     JSON.parse(localStorage.getItem("userInfo")) : null
@@ -59,6 +63,9 @@ const initialState = {
         cartItems: cartItemsFromLocalStorage,
         shippingAddress: shippingAddressFromLocalStorage,
         paymentMethod: paymentMethodFromLocalStorage
+    },
+    like: {
+        likeItems: likeItemsFromLocalStorage,
     },
     userLogin: { userInfo: userInfoFromLocalStorage }
 }

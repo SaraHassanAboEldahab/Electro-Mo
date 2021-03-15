@@ -1,25 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import Rating from "./Rating"
+import { Link } from "react-router-dom"
 
-const CategoryCard = ({ name, img, id, rating }) => {
-    return (
-        <div className="category-card__content">
-            <div className="card-overlay">
-                <button>
-                    <Link to={`/product/${id}`}> Show details</Link>
-                </button>
-            </div>
-            <div className="media">
-                <img src={img} className="mr-1" alt="..." />
-                <div className="media-body">
-                    <h6 className="mb-2">{name}</h6>
-                    <Rating value={rating} />
-                </div>
-            </div>
-        </div>
-
-    )
+const CategoryCard = ({ name, img, categoryName }) => {
+  return (
+    <Link to={`/category/${categoryName}`}>
+      <div className="category-card__content" style={{}}>
+        <img src={img} alt="" />
+        <h6 className="text-center">{name}</h6>
+      </div>
+    </Link>
+  )
 }
 
 export default CategoryCard

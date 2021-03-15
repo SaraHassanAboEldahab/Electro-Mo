@@ -27,19 +27,51 @@ const Home = ({ match }) => {
     }, [dispatch])
 
     return (
-        <div className="container home mt-5">
+        <div className="container-fluid px-5 home mt-5">
             {loading ? <Loader /> : error ? <ErrorMessage variant="danger">{error}</ErrorMessage>
                 : products.length > 0 ? (
                     <>
                         <div className="row">
-                            <div className="col-lg-8 home__img">
-                                <img src="/images/s4.jpg" alt="" />
-                                <h3>Mo-Shop is an e-commerce web app </h3>
-                                <button>Shop Now</button>
+                            <div className="col-lg-9 home__img">
+                                <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
+                                    <ol className="carousel-indicators">
+                                        <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
+                                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                                    </ol>
+                                    <div className="carousel-inner">
+                                        <div className="carousel-item active">
+                                            <img src="/images/screen.jpg" className="d-block w-100" alt="..." style={{ backgroundSize: "cover" }} />
+                                            <div className="carousel-caption text-left">
+                                                <h3 className="animate__animated animate__pulse animate__duration-4s">ENHANCE YOUR </h3>
+                                                <h3 className="animate__animated animate__bounceInLeft animate__duration-4s">ENTERTAINMENT </h3>
+                                                <div className="d-flex animate__animated animate__bounceInRight animate__duration-4s">
+                                                    <span className="mt-3">LAST CALL FOR UP TO </span>
+                                                    <span>$</span>
+                                                    <h2>250</h2>
+                                                    <span className="mt-3">OFF!</span>
+                                                </div>
+                                                <button className="btn btn-info">Shop Now</button>
+                                            </div>
+                                        </div>
+                                        <div className="carousel-item">
+                                            <img src="/images/mac.jpg" className="d-block w-100" alt="..." style={{ backgroundSize: "cover" }} />
+                                            <div className="carousel-caption  text-left">
+                                                <h3 className="animate__animated animate__pulse animate__duration-2s">ENHANCE YOUR </h3>
+                                                <h3 className="animate__animated animate__bounceInLeft animate__duration-2s">ENTERTAINMENT </h3>
+                                                <div className="d-flex animate__animated animate__bounceInRight animate__duration-2s">
+                                                    <span className="mt-3">LAST CALL FOR UP TO </span>
+                                                    <span>$</span>
+                                                    <h2>250</h2>
+                                                    <span className="mt-3">OFF!</span>
+                                                </div>
+                                                <button className="btn btn-info">Shop Now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="col-lg-4">
 
-
+                            <div className="col-lg-3">
                                 <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                                     <div className="carousel-inner">
                                         <div className="carousel-item active">
@@ -48,6 +80,7 @@ const Home = ({ match }) => {
                                                 img={products[0].image}
                                                 price={products[0].price}
                                                 id={products[0]._id}
+                                                brand={products[0].brand}
                                             />
                                         </div>
                                         {products.map((product, index) => {
@@ -59,6 +92,7 @@ const Home = ({ match }) => {
                                                             img={product.image}
                                                             price={product.price}
                                                             id={product._id}
+                                                            brand={product.brand}
                                                         />
                                                     </div>
                                                 )
@@ -81,49 +115,49 @@ const Home = ({ match }) => {
 
                         <div className="row" style={{ height: "fit-content", margin: "100px 0px" }}>
                             <div className="col-lg-5 mb-5 mb-lg-0" style={{ height: "350px" }}>
-                                <img style={{ width: "100%", height: "100%" }} src="/images/c8.jpg" alt="..." />
+                                <img style={{ width: "100%", height: "100%" }} src="/images/s4.jpg" alt="..." />
                             </div>
                             <div className="col-lg-7" style={{ height: "350px" }}>
                                 <div className="row" style={{ height: "45%" }}>
                                     <div className="col-4">
-                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/e4.png" alt="..." style={{ width: "100%", height: "100%" }} />
+                                        <div className="card" style={{ width: "100%", height: "100%" }}>
+                                            <img className="w-75 h-75 m-auto" src="/images/m2.png" alt="..." />
                                         </div>
                                     </div>
 
                                     <div className="col-4">
-                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/c5.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                        <div className="card" style={{ width: "100%", height: "100%" }}>
+                                            <img className="w-75 h-75 m-auto" src="/images/GamePad_160x.jpg" alt="..." />
                                         </div>
                                     </div>
 
                                     <div className="col-4">
-                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/m6.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                        <div className="card" style={{ width: "100%", height: "100%" }}>
+                                            <img className="w-75 h-75 m-auto" src="/images/eyewear_large.jpg" alt="..." />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="row " style={{ height: "45%", marginTop: "7%" }}>
                                     <div className="col-4">
-                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/m3.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                        <div className="card" style={{ width: "100%", height: "100%" }}>
+                                            <img className="w-75 h-75 m-auto" src="/images/lap3.jpg" alt="..." />
                                         </div>
                                     </div>
                                     <div className="col-4">
-                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/a3.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                        <div className="card" style={{ width: "100%", height: "100%" }}>
+                                            <img className="w-75 h-75 m-auto" src="/images/Phone4_large.jpg" alt="..." />
                                         </div>
                                     </div>
                                     <div className="col-4">
-                                        <div className="card" style={{ width: "100%", height: "100%", margin: "0" }}>
-                                            <img src="/images/c6.jpg" alt="..." style={{ width: "100%", height: "100%" }} />
+                                        <div className="card" style={{ width: "100%", height: "100%" }}>
+                                            <img className="w-75 h-75 m-auto" src="/images/Headphones_large.jpg" alt="..." />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <SpecificProducts categories={categories} />
+                        {categories.length > 0 && <SpecificProducts categories={categories} />}
                         <FeaturedProducts />
                     </>
                 ) : null

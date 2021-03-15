@@ -42,3 +42,9 @@ ul{
     font-weight: bold;
     color: gray;
 }
+
+.hover-color{
+&:hover{
+color: #3fcbff !important;
+}
+}

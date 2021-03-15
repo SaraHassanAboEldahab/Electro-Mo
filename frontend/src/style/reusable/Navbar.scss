@@ -1,13 +1,17 @@
 .navbar{
+    background-color: white !important;
+    box-shadow: 1px 1px 5px 0px #dddddd, -1px -1px 5px 0px #dddddd;
+
     .navbar-brand{
-      font-weight: bolder;
-      color:#e5e7e6 !important;
-      &:hover{
-        color:#17a2b8 !important;
+      font-weight: bolder ;
+      color:black !important; 
     }
-    }
-    .navbar-nav{
-        //height: 50px;
+    .navbar-toggler{
+        color: black !important;
+        background-color: black !important;
+        i{
+            color:#e5e7e6;
+        }
     }
     .form-inline{
         width:60%;
@@ -18,7 +22,7 @@
           width:80%;
           border-radius: 50px;
           outline: 0;
-          border: none;
+          border: 2px solid #17a2b8;
           height: 40px !important;
           padding:11px 10px 15px 15px;
           @media (max-width: 991.98px) {
@@ -41,8 +45,7 @@
       }
     .nav-item{
         .nav-link{
-            color:#e5e7e6;
-            font-weight: bold;
+            color:black;
             &:hover{
                 color:#17a2b8 !important;
             }
@@ -73,7 +76,7 @@
     background-color:#e5e7e6;
     display: inline-block;
     text-align: center;
-    color: #17a2b8 ;
+    color:  #17a2b8;
     font-weight: bold;
     top:18px;
     left:-5px;
@@ -105,4 +108,18 @@
     100%{
         top: 18px;
     }
+}
+
+.cart-modal{
+    box-shadow: 1px 1px 5px 0px #dddddd, -1px -1px 5px 0px #dddddd;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.125);
+    position: absolute;
+    z-index: 99999999;
+    width:400px;
+    height: fit-content;
+    padding: 20px;
+    right:40px;
+    top:75px;
+    background-color: white;
 }

@@ -64,6 +64,10 @@ const productSchema = mongoose.Schema({
     isOnSale: {
         type: Boolean,
         default: false
+    },
+    discount: {
+        type: Number,
+        default: 0
     }
 },
     {

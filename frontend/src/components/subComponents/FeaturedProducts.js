@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from 'react-router-dom'
 import { fetchAllProducts } from "../../actions/productActions"
 import ErrorMessage from "./ErrorMessage"
 import Loader from "./Loader"
@@ -20,8 +21,8 @@ const FeaturedProducts = () => {
     }, [dispatch])
 
     return (
-        <div className="container">
-            {loading ? <Loader /> : error ? <ErrorMessage>{error}</ErrorMessage> :
+        <>
+            {loading ? <Loader /> : error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
                 <div className="row">
                     <div className="col-lg-3">
                         <h6 className="head mt-5 mt-lg-0">Featured products</h6>
@@ -29,13 +30,15 @@ const FeaturedProducts = () => {
                         {products.map((product, index) => {
                             if (index < 3) {
                                 return (
-                                    <div key={index} className="media mb-4">
-                                        <img style={{ width: "100px", height: "80px" }} src={product.image} alt="..." />
-                                        <div className="media-body pl-2">
-                                            <h6 className="text-info">{product.name}</h6>
-                                            <h6>{product.price}</h6>
+                                    <Link to={`/product/${product._id}`}>
+                                        <div key={index} className="media mb-4">
+                                            <img style={{ width: "100px", height: "80px" }} src={product.image} alt="..." />
+                                            <div className="media-body pl-2">
+                                                <h6 className="text-info">{product.name}</h6>
+                                                <h6>{product.price}</h6>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )
                             }
                         })}
@@ -46,13 +49,15 @@ const FeaturedProducts = () => {
                         {topProducts.map((product, index) => {
                             if (index < 3) {
                                 return (
-                                    <div key={index} className="media mb-4">
-                                        <img style={{ width: "100px", height: "80px" }} src={product.image} alt="..." />
-                                        <div className="media-body pl-2">
-                                            <h6 className="text-info">{product.name}</h6>
-                                            <h6>{product.price}</h6>
+                                    <Link to={`/product/${product._id}`}>
+                                        <div key={index} className="media mb-4">
+                                            <img style={{ width: "100px", height: "80px" }} src={product.image} alt="..." />
+                                            <div className="media-body pl-2">
+                                                <h6 className="text-info">{product.name}</h6>
+                                                <h6>{product.price}</h6>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )
                             }
                         })}
@@ -63,13 +68,15 @@ const FeaturedProducts = () => {
                         {onSaleProducts.map((product, index) => {
                             if (index < 3) {
                                 return (
-                                    <div key={index} className="media mb-4">
-                                        <img style={{ width: "100px", height: "80px" }} src={product.image} alt="..." />
-                                        <div className="media-body pl-2">
-                                            <h6 className="text-info">{product.name}</h6>
-                                            <h6>{product.price}</h6>
+                                    <Link to={`/product/${product._id}`}>
+                                        <div key={index} className="media mb-4">
+                                            <img style={{ width: "100px", height: "80px" }} src={product.image} alt="..." />
+                                            <div className="media-body pl-2">
+                                                <h6 className="text-info">{product.name}</h6>
+                                                <h6 className="text-dark">{product.price}</h6>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )
                             }
                         })}
@@ -79,7 +86,7 @@ const FeaturedProducts = () => {
                     </div>
                 </div>
             }
-        </div>
+        </>
     )
 }
 

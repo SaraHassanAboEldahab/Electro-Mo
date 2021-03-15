@@ -3,12 +3,12 @@ import { Link } from "react-router-dom"
 
 const SpecificProducts = ({ categories }) => {
     return (
-        <div className="container specific-products">
+        <div className=" specific-products">
             <h4 className="head">Some Of Our Products</h4>
             <hr />
             <div className="row mx-0" style={{ border: "1px solid rgba(0,0,0,.125)" }}>
                 <div className="col-lg-3 py-3" style={{ backgroundColor: "#f9f9f9" }}>
-                    <Link to={`/category/${categories[0]._id}`}>
+                    <Link to={`/category/${categories[0].name}`}>
                         <h6>Computers & Laptops</h6>
                     </Link>
                     <ul>
@@ -16,14 +16,8 @@ const SpecificProducts = ({ categories }) => {
                         <li>Printers & Ink</li>
                         <li>Mice</li>
                     </ul>
-                    <Link to={`/category/${categories[1]._id}`}>
-                        <h6>Electronics</h6>
-                    </Link>
-                    <ul>
-                        <li>Power Bank</li>
-                    </ul>
 
-                    <Link to={`/category/${categories[2]._id}`}>
+                    <Link to={`/category/${categories[1].name}`}>
                         <h6>Smartphones & Tablets</h6>
                     </Link>
                     <ul>
@@ -31,7 +25,7 @@ const SpecificProducts = ({ categories }) => {
                         <li>Mobile Phone Charger</li>
                     </ul>
 
-                    <Link to={`/category/${categories[3]._id}`}>
+                    <Link to={`/category/${categories[2].name}`}>
                         <h6>Accessories</h6>
                     </Link>
                     <ul>

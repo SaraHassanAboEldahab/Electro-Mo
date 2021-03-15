@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { BrowserRouter, Route } from "react-router-dom"
 import Home from './components/pages/Home'
 import Navbar from "./components/reusable/Navbar"
@@ -21,40 +21,47 @@ import UserEditScreen from './components/pages/UserEditScreen'
 import OrdersListScreen from "./components/pages/OrdersListScreen"
 import OrderCreated from './components/pages/OrderCreated'
 import CreateCategory from './components/pages/CreateCategory'
-import CategoryProducts from "./components/pages/CategoryProducts"
-
+import LikeScreen from "./components/pages/LikeScreen"
+import CategoryScreen from './components/pages/CategoryScreen'
+import BrandScreen from './components/pages/BrandScreen'
+import CartModal from './components/subComponents/CartModal'
 
 const App = () => {
+
+  const [showCart, setShowCart] = useState(false)
+
   return (
     <BrowserRouter>
-      <Route render={({ history }) => <Navbar history={history} />} />
-      <main className="py-3">
+      <Route render={({ history }) => <Navbar setShowCart={setShowCart} history={history} />} />
+      {showCart && <CartModal showCart={showCart} setShowCart={setShowCart} />}
+      <main className="py-5" onMouseEnter={() => setShowCart(false)}>
         <Route path="/" component={Home} exact />
-        <Route path="/product/:id" component={ProductDetails} />
-        <Route path="/cart/:id?" component={CartScreen} />
-        <Route path="/categories" component={Categories} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route path="/information" component={Information} />
-        <Route path="/shipping" component={Shipping} />
-        <Route path="/profile" component={ProfileScreen} />
-        <Route path="/payment" component={PaymentScreen} />
-        <Route path="/order/:id" component={OrderScreen} />
-        <Route path="/admin/userlist" component={UserListScreen} />
+        <Route path="/product/:id" component={ProductDetails} exact />
+        <Route path="/cart/:id?" component={CartScreen} exact />
+        <Route path="/categories" component={Categories} exact />
+        <Route path="/login" component={Login} exact />
+        <Route path="/register" component={Register} exact />
+        <Route path="/information" component={Information} exact />
+        <Route path="/shipping" component={Shipping} exact />
+        <Route path="/profile" component={ProfileScreen} exact />
+        <Route path="/payment" component={PaymentScreen} exact />
+        <Route path="/order/:id" component={OrderScreen} exact />
+        <Route path="/admin/userlist" component={UserListScreen} exact />
         <Route path="/admin/productlist" component={ProductListScreen} exact />
         <Route path="/admin/productlist/:pageNumber" component={ProductListScreen} exact />
-        <Route path="/admin/product/create" component={ProductCreateScreen} />
-        <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
+        <Route path="/admin/product/create" component={ProductCreateScreen} exact />
+        <Route path="/admin/product/:id/edit" component={ProductEditScreen} exact />
         <Route path="/search/:keyword" component={Categories} exact />
         <Route path="/page/:pageNumber" component={Categories} exact />
         <Route path="/search/:keyword/page/:pageNumber" component={Categories} exact />
-        <Route path="/admin/user/:id/edit" component={UserEditScreen} />
-        <Route path="/admin/orderlist" component={OrdersListScreen} />
-        <Route path="/ordercreated" component={OrderCreated} />
-        <Route path="/admin/createcategory" component={CreateCategory} />
-        <Route path="/category/:id" component={CategoryProducts} exact />
+        <Route path="/admin/user/:id/edit" component={UserEditScreen} exact />
+        <Route path="/admin/orderlist" component={OrdersListScreen} exact />
+        <Route path="/ordercreated" component={OrderCreated} exact />
+        <Route path="/admin/createcategory" component={CreateCategory} exact />
+        <Route path="/like/:id?" component={LikeScreen} exact />
+        <Route path="/category/:name" component={CategoryScreen} exact />
+        <Route path="/brand/:brand" component={BrandScreen} exact />
       </main>
-      <Footer />
     </BrowserRouter>
   )
 }

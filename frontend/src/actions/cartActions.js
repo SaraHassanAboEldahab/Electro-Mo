@@ -5,7 +5,9 @@ import {
     CART_SAVE_PAYMENT_METHOD,
     CART_SAVE_SHIPPING_ADDRESS,
     CART_SAVE_SHIPPING_METHOD,
-    CART_SAVE_TOTAL_PRICE
+    CART_SAVE_TOTAL_PRICE,
+    LIKE_ADD_ITEM,
+    LIKE_REMOVE_ITEM
 } from "./types"
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
@@ -67,4 +69,31 @@ export const savePaymentMethod = (data) => async (dispatch) => {
         payload: data
     })
     localStorage.setItem("paymentMethod", JSON.stringify(data))
+}
+
+
+
+export const addToLikes = (id) => async (dispatch, getState) => {
+    const { data } = await axios.get(`/api/products/${id}`)
+    dispatch({
+        type: LIKE_ADD_ITEM,
+        payload: {
+            product: data._id,
+            name: data.name,
+            image: data.image,
+            price: data.price,
+            countInStock: data.countInStock
+        }
+    })
+    //save cart items in local storage and convert it into string because only strings are stored in local storage
+    localStorage.setItem("likeItems", JSON.stringify(getState().like.likeItems))
+}
+
+export const removeFromLikes = (id) => async (dispatch, getState) => {
+
+    dispatch({
+        type: LIKE_REMOVE_ITEM,
+        payload: id
+    })
+    localStorage.setItem("likeItems", JSON.stringify(getState().like.likeItems))
 }
