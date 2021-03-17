@@ -38,7 +38,7 @@ const products = [
     rating: 3.0,
     numReviews: 12,
     isOnSale: false,
-    discount: 0
+    discount: 20
   },
   {
     name: 'Samsung Syncmaster T22A300 21.5 inch',
@@ -52,8 +52,7 @@ const products = [
     rating: 4.5,
     numReviews: 10,
     isOnSale: false,
-    discount: 20,
-    discount: 0
+    discount: 0,
   },
   {
     name: 'iPhone 11 Pro Max',

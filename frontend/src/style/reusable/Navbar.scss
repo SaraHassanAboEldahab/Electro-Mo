@@ -113,7 +113,7 @@
     box-shadow: 1px 1px 5px 0px #dddddd, -1px -1px 5px 0px #dddddd;
     border-radius: 10px;
     border: 1px solid rgba(0,0,0,.125);
-    position: absolute;
+    position: fixed;
     z-index: 99999999;
     width:400px;
     height: fit-content;

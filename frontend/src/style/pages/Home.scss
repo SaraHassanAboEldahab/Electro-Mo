@@ -90,6 +90,16 @@
             white-space: nowrap;
             }
           }
+          .discount{
+              position: absolute;
+              top:35%;
+              width:45px;
+              height: 45px;
+              border-radius: 50%;
+              color: white;
+              background-color: #17a2b8;
+              z-index: 900;
+          }
         img{
             width:75%;
             height: 100px;
@@ -133,5 +143,21 @@
     margin: 100px 0;
     ul{
         list-style: none;
+        li{
+            font-size: 14px;
+        }
+    }
+    .brands{
+        li{
+            color:gray;
+            border:none;
+            border-bottom: 1px solid rgba(0,0,0,.125);
+            margin-bottom: 20px;
+            font-weight: 400;
+            font-size: 16px;
+            &:hover{
+                color:#17a2b8 !important
+            }
+        }
     }
 }

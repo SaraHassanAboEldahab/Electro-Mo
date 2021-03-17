@@ -1,10 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import SendEmail from '../subComponents/SendEmail'
 
 
 const Footer = ({ categories }) => {
     return (
-        <footer className="footer">
+        <footer className="footer mt-5">
+            <div className=" row mx-0 send-email">
+                <h4 className="col-lg-3 col-md-5"><i class="far fa-paper-plane"></i> Sign up to Newsletter</h4>
+                <div className="col-lg-4 d-none d-lg-block"> <span>...and receive $20 coupon for first shopping and free delivery.</span></div>
+                <div className="col-lg-5 col-md-7">
+                    <SendEmail />
+                </div>
+            </div>
             <div className="row mx-0 footer-top">
                 <div className="col-lg-6">
                     <h1 className="mb-4">electroMo</h1>

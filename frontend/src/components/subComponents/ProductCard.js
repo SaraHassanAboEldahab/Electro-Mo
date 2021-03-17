@@ -5,9 +5,11 @@ const ProductCard = ({ brand, name, price, img, id, discount, isOnSale }) => {
     return (
         <div className="card" style={{ height: "fit-content" }}>
             <Link to={`/brand/${brand}`} >
-                <span className="span-styling pl-2 pt-2">{brand}</span>
+                <span className="pl-2 pt-2 hover-color" style={{ fontWeight: "400", color: "gray" }}>{brand}</span>
             </Link>
-            <h6 className="card-title text-info pl-2 pt-2">{name}</h6>
+            <Link to={`/product/${id}`}>
+                <h6 className="card-title text-info pl-2 pt-2">{name}</h6>
+            </Link>
             <img src={img} className="card-img-top" alt="..." style={{ height: "200px", width: "80%", margin: "0 auto" }} />
             <div className="card-body px-2 py-3">
                 <div className="d-flex align-items-center">

@@ -1,5 +1,56 @@
 .footer{
   background-color: #f8f8f8;
+  .send-email{
+    height: fit-content;
+    padding:30px;
+    background-color: #17a2b8;
+    h4{
+      width:100%;
+      color: white;
+
+    }
+    span{
+      display: inline-block;
+      width: 100%;
+      color: white;
+    }
+    form{
+      width: 100%;
+      button{
+        width:25%;
+        margin-left: -5%;
+        margin-top: -5px;
+        height: 45px;
+        border: none !important;
+        outline: 0 !important;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        @media (max-width: 768px) {
+          width:100%;
+          border-radius: 20px;
+          margin-left: 0%;
+          margin-top: 20px;
+      }
+      }
+      input{
+        width: 80%;
+        height: 45px;
+        padding:0px 15px !important;
+        border: none;
+        outline: 0;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        @media (max-width: 768px) {
+          width:100%;
+          border-radius: 20px;
+          margin-top: 20px;
+      }
+
+      }
+    }
+  }
   .footer-top{
     height: fit-content;
     padding:40px 30px 50px 30px;

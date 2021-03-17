@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { fetchProductsList } from "../../actions/productActions"
+import { fetchProductsList, fetchAllProducts } from "../../actions/productActions"
 import { fetchCategories } from "../../actions/categoryActions"
 
 //components importing
@@ -20,19 +20,23 @@ const Home = ({ match }) => {
     const { loading, error, products } = productsList
 
     const categoriesList = useSelector(state => state.categoriesList)
-    const { categories, loading: catLoading, error: catError } = categoriesList
+    const { categories } = categoriesList
+
+    const allProducts = useSelector((state) => state.allProducts)
+    const { products: allProductsList } = allProducts
 
     useEffect(() => {
         dispatch(fetchCategories())
         dispatch(fetchProductsList(keyword))
+        dispatch(fetchAllProducts())
     }, [dispatch])
 
     return (
-        <>
-            <div className="container-fluid px-5 home mt-5">
-                {loading ? <Loader /> : error ? <ErrorMessage variant="danger">{error}</ErrorMessage>
-                    : products.length > 0 ? (
-                        <>
+        <div className=" home mt-5">
+            {loading ? <Loader /> : error ? <ErrorMessage variant="danger">{error}</ErrorMessage>
+                : products.length > 0 ? (
+                    <>
+                        <div className="container-fluid px-5">
                             <div className="row">
                                 <div className="col-lg-9 home__img">
                                     <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
@@ -163,14 +167,14 @@ const Home = ({ match }) => {
                                     </div>
                                 </div>
                             </div>
-                            {categories.length > 0 && <SpecificProducts categories={categories} />}
-                            <FeaturedProducts />
-                        </>
-                    ) : null
-                }
-            </div>
-            <Footer categories={categories} />
-        </>
+                            {categories.length > 0 && <SpecificProducts categories={categories} productsBrands={allProductsList} />}
+                            <FeaturedProducts products={allProductsList} />
+                        </div>
+                        <Footer categories={categories} />
+                    </>
+                ) : null
+            }
+        </div>
     )
 }
 

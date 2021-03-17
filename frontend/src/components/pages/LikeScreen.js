@@ -36,7 +36,7 @@ const LikeScreen = ({ }) => {
               <div className="row my-2">
                 <div className="col-md-2 mt-md-0 mt-3 justify-content-center d-flex align-items-center">
                   <span className="d-md-none d-inline-block">Delete</span>
-                  <i className="fas fa-trash ml-auto ml-md-0" style={{ fontSize: "20px" }}
+                  <i className="fas fa-trash ml-auto ml-md-0" style={{ fontSize: "20px", cursor: "pointer" }}
                     onClick={() => removeFromCartHandler(item.product)}>
                   </i>
                 </div>

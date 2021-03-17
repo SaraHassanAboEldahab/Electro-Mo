@@ -32,6 +32,9 @@ const TrendCard = ({ brand, name, img, price, id, setData, countInStock, discoun
             <Link style={{ fontWeight: "400" }} to={`/brand/${brand}`} >
                 <span className="hover-color pl-2 pt-2" style={{ color: "gray" }}>{brand}</span>
             </Link>
+            {discount > 0 && <div className="discount d-flex align-items-center justify-content-center">
+                <span >-{discount}%</span>
+            </div>}
             <Link to={`/product/${id}`}>
                 <div className="name"><p className="p-2 text-info">{name}</p></div>
                 <img src={img} alt="" />
