@@ -30,6 +30,8 @@ const TrendedProducts = ({ products }) => {
                                     id={product._id}
                                     brand={product.brand}
                                     countInStock={product.countInStock}
+                                    discount={product.discount}
+                                    isOnSale={product.isOnSale}
                                     setData={setData}
                                 />
                             </div>

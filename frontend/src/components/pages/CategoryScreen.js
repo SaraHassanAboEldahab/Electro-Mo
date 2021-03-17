@@ -27,13 +27,14 @@ const CategoryScreen = ({ match }) => {
 
   return (
     <div className="container-fluid px-5 mt-0">
-      {error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
-        loading ? <Loader /> : oneCategory.length > 0 ?
-          <>
-            <div className="row mx-0  one-category">
-              <div className="col-md-3">
-                <CategorySidebar productsBrands={oneCategory} categoryName={match.params.name} />
-              </div>
+
+      <>
+        <div className="row mx-0  one-category">
+          <div className="col-md-3">
+            <CategorySidebar productsBrands={oneCategory} categoryName={match.params.name} />
+          </div>
+          {error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
+            loading ? <Loader /> : oneCategory.length > 0 ?
               <div className="col-md-9">
                 <div className="row mx-0">
                   {oneCategory.map((product) => (
@@ -45,16 +46,19 @@ const CategoryScreen = ({ match }) => {
                         id={product._id}
                         brand={product.brand}
                         countInStock={product.countInStock}
+                        discount={product.discount}
+                        isOnSale={product.isOnSale}
                         setData={setData}
                       />
                     </div>
                   ))}
                 </div>
                 <ViewModal data={data} />
-              </div>
-            </div>
-          </> : null
-      }
+              </div> : null
+          }
+        </div>
+      </>
+
     </div>
   )
 }

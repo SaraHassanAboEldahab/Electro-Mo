@@ -101,7 +101,7 @@ const ProfileScreen = ({ history }) => {
                     <h4 className="head">Your Orders</h4>
                     <hr className="mb-2" />
                     {errorOrders ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
-                        loadingOrders ? <Loader /> :
+                        loadingOrders ? <Loader /> : orders.length > 0 ?
                             <Table striped bordered hover responsive className="table-sm" style={{ marginTop: "40px" }}>
                                 <thead>
                                     <tr>
@@ -140,7 +140,7 @@ const ProfileScreen = ({ history }) => {
                                         </tr>
                                     ))}
                                 </tbody>
-                            </Table>
+                            </Table> : null
                     }
                 </div>
             </div>

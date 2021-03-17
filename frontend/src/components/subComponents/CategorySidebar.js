@@ -4,8 +4,8 @@ import { Link } from "react-router-dom"
 
 const CategorySidebar = ({ productsBrands, categoryName }) => {
 
-    const [open, setOpen] = useState(true)
-    const arr = productsBrands.map(item => {
+    const [open, setOpen] = useState(false)
+    const arr = productsBrands && productsBrands.map(item => {
         return [item.brand, item]
     })
     const newArr = new Map(arr)

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { removeFromLikes } from "../../actions/cartActions"
 import { addToCart } from "../../actions/cartActions"
 import ErrorMessage from '../subComponents/ErrorMessage'
-const LikeScreen = ({ match }) => {
+const LikeScreen = ({ }) => {
 
 
   const dispatch = useDispatch()
@@ -78,7 +78,9 @@ const LikeScreen = ({ match }) => {
               </span>
                 </div>
                 <div className="col-md-2 flex-column justify-content-center d-flex align-items-center text-center">
-                  <Link to={`/product/${item.product}`} className="btn btn-info mt-md-0 mt-4 ml-auto ml-md-0 w-100 w-md-75" style={{ borderRadius: "20px" }}>View Product</Link>
+                  <Link
+
+                    to={`/product/${item.product}`} className="btn btn-info mt-md-0 mt-4 ml-auto ml-md-0 w-100 w-md-75" style={{ borderRadius: "20px" }}>View Product</Link>
                   <button
                     type="button"
                     disabled={item.countInStock === 0}

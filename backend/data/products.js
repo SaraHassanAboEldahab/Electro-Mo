@@ -9,7 +9,7 @@ const products = [
     countInStock: 11,
     rating: 3.4,
     numReviews: 12,
-    isOnSale: false,
+    isOnSale: true,
     discount: 10
   },
   {
@@ -24,6 +24,7 @@ const products = [
     rating: 4.5,
     numReviews: 7,
     isOnSale: false,
+    discount: 0
   },
   {
     name: 'Cannon EOS 80D DSLR Camera',
@@ -36,7 +37,8 @@ const products = [
     countInStock: 5,
     rating: 3.0,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Samsung Syncmaster T22A300 21.5 inch',
@@ -50,7 +52,8 @@ const products = [
     rating: 4.5,
     numReviews: 10,
     isOnSale: false,
-    discount: 20
+    discount: 20,
+    discount: 0
   },
   {
     name: 'iPhone 11 Pro Max',
@@ -63,7 +66,8 @@ const products = [
     countInStock: 7,
     rating: 4.0,
     numReviews: 8,
-    isOnSale: false
+    isOnSale: true,
+    discount: 25
   },
   {
     name: 'Lazy Hang Neck Phone Holder',
@@ -75,7 +79,8 @@ const products = [
     countInStock: 11,
     rating: 5,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Magic Mouse 2 For Gaming',
@@ -102,7 +107,8 @@ const products = [
     countInStock: 7,
     rating: 5.0,
     numReviews: 8,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Airpods Wireless Bluetooth Headphones',
@@ -115,7 +121,8 @@ const products = [
     countInStock: 3,
     rating: 3.5,
     numReviews: 10,
-    isOnSale: false
+    isOnSale: true,
+    discount: 15
   },
   {
     name: 'Samsung 21.5 inch',
@@ -142,7 +149,8 @@ const products = [
     countInStock: 7,
     rating: 4.0,
     numReviews: 10,
-    isOnSale: true
+    isOnSale: true,
+    discount: 50
   },
   {
     name: 'Lenovo QE07 Neckband Wireless Earphone',
@@ -155,7 +163,8 @@ const products = [
     countInStock: 0,
     rating: 4,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Lenovo V Series All-in-One',
@@ -167,7 +176,8 @@ const products = [
     countInStock: 0,
     rating: 4.0,
     numReviews: 12,
-    isOnSale: true
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Samsung Galaxy Ultra',
@@ -180,7 +190,8 @@ const products = [
     countInStock: 5,
     rating: 4.3,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: true,
+    discount: 30
   },
   {
     name: 'Lenovo HD800 Bluetooth Headphone',
@@ -193,7 +204,8 @@ const products = [
     countInStock: 8,
     rating: 4.3,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Lenovo V35s SFF Desktop',
@@ -206,7 +218,8 @@ const products = [
     countInStock: 5,
     rating: 4.5,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Apple iPad 2020 8th Gen',
@@ -219,7 +232,8 @@ const products = [
     countInStock: 5,
     rating: 4.3,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'PS3 Game Controller',
@@ -232,7 +246,8 @@ const products = [
     countInStock: 3,
     rating: 4.3,
     numReviews: 12,
-    isOnSale: true
+    isOnSale: true,
+    discount: 70
   },
   {
     name: 'Galaxy Book Ion 13.3',
@@ -245,7 +260,8 @@ const products = [
     countInStock: 5,
     rating: 4.5,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Apple Magic Keyboard for iPad Pro',
@@ -258,7 +274,8 @@ const products = [
     countInStock: 5,
     rating: 4.3,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'MOSISO Lycra Sleeve Water Repellent Bag Cover',
@@ -268,13 +285,14 @@ const products = [
     category: 'Accessories',
     price: 200.0,
     countInStock: 3,
-    rating: 4.3,
+    rating: 4.0,
     numReviews: 12,
-    isOnSale: true
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Samsung SL-M2020 Mono Laser Printer White Monolaser',
-    image: '/images/m8.jpg',
+    image: '/images/printer.jpg',
     description:
       'The M2020 prints and scans your text and images in brilliant quality. The 1200 x 1200 dpi is achieved by varying the dots size and the position of the dot itself. This means you can print in more detail for a smoother and sharper image.',
     brand: 'Samsung',
@@ -283,7 +301,8 @@ const products = [
     countInStock: 7,
     rating: 5.0,
     numReviews: 8,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Kingston SDCS2/32GB Class 10 CANVAS',
@@ -296,7 +315,8 @@ const products = [
     countInStock: 5,
     rating: 4.3,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: true,
+    discount: 45
   },
   {
     name: 'Apple Series SE Silicone Watch',
@@ -308,7 +328,8 @@ const products = [
     countInStock: 3,
     rating: 5,
     numReviews: 12,
-    isOnSale: true
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Aluminum Alloy Foldable Bluetooth Keyboard ',
@@ -321,7 +342,8 @@ const products = [
     countInStock: 7,
     rating: 5.0,
     numReviews: 8,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Lenovo Black Charger with Data Cable SL-003',
@@ -334,7 +356,8 @@ const products = [
     countInStock: 5,
     rating: 4.3,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Lenovo K320T Dual SIM',
@@ -347,7 +370,8 @@ const products = [
     countInStock: 5,
     rating: 4.3,
     numReviews: 12,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   },
   {
     name: 'Lenovo ideapad L3 Laptop',
@@ -360,7 +384,8 @@ const products = [
     countInStock: 7,
     rating: 5.0,
     numReviews: 8,
-    isOnSale: false
+    isOnSale: false,
+    discount: 0
   }
 ]
 

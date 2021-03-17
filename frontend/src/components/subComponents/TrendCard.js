@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { addToLikes, removeFromLikes } from "../../actions/cartActions"
 
 
-const TrendCard = ({ brand, name, img, price, id, setData, countInStock }) => {
+const TrendCard = ({ brand, name, img, price, id, setData, countInStock, discount, isOnSale }) => {
 
     const dispatch = useDispatch()
 
@@ -12,9 +12,19 @@ const TrendCard = ({ brand, name, img, price, id, setData, countInStock }) => {
     const [colorEye, setColorEye] = useState("gray")
     const [color, setColor] = useState("gray")
 
-
     const { likeItems } = useSelector((state) => state.like)
 
+    const checkLike = () => {
+        const like = likeItems.find((i) => i.product === id)
+        if (like) {
+            dispatch(removeFromLikes(id))
+            setColor("gray")
+        } else {
+            dispatch(addToLikes(id))
+            setColor("#00abc5")
+
+        }
+    }
 
     return (
 
@@ -26,8 +36,16 @@ const TrendCard = ({ brand, name, img, price, id, setData, countInStock }) => {
                 <div className="name"><p className="p-2 text-info">{name}</p></div>
                 <img src={img} alt="" />
                 <div className="d-flex mt-3 p-2">
-                    <span style={{ fontWeight: "bold", fontSize: "18px", color: "gray" }}>${price}</span>
-                    <button className="btn rounded-btn ml-auto" >
+                    {isOnSale ?
+                        <div className="d-flex flex-column">
+                            <h6 className="text-danger mr-3 mb-0">${(price - (price * (discount / 100))).toFixed(2)}</h6>
+                            <span style={{ color: "gray", fontWeight: "400", display: "inline-block", width: "fit-content", height: "20px" }}>
+                                ${price}
+                                <hr style={{ margin: "-12px 0px 0px 0px", width: "100%", backgroundColor: "gray" }} />
+                            </span>
+                        </div> :
+                        <h6 className="text-dark">${price}</h6>
+                    }                    <button className="btn rounded-btn ml-auto" >
                         <i className="fas fa-long-arrow-alt-right"></i>
                     </button>
                 </div>
@@ -47,9 +65,9 @@ const TrendCard = ({ brand, name, img, price, id, setData, countInStock }) => {
                     <i
                         className="far fa-heart ml-auto"
                         style={{ color: color, fontSize: "14px" }}
-                        onMouseEnter={() => setColor("#00abc5")}
-                        onMouseLeave={() => setColor("gray")}
-                        onClick={() => likeItems.find((i) => i.product === id) ? dispatch(removeFromLikes(id)) : dispatch(addToLikes(id))}
+                        //onMouseEnter={() => color === "gray" ? setColor("#00abc5") : setColor("gray")}
+                        //onMouseLeave={() => color === "#00abc5" ? setColor("#00abc5") : setColor("gray")}
+                        onClick={checkLike}
                     >
                         {" "} Wishlist
                     </i>

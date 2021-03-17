@@ -45,7 +45,7 @@ const Navbar = ({ history, setShowCart }) => {
                         <i className="fas fa-grip-lines"></i>
                     </button>
 
-                    <Link className="navbar-brand mr-sm-5" to="/">Mo-Shop</Link>
+                    <Link className="navbar-brand mr-sm-5" to="/">electroMo</Link>
 
                     <form onSubmit={searchHandler} className="form-inline d-flex justify-content-center">
                         <input
@@ -133,23 +133,22 @@ const Navbar = ({ history, setShowCart }) => {
                                 </>
                             }
                             <li className="nav-item  mr-2 d-flex">
-                                <NavLink className="nav-link p-0" style={{ marginTop: "12px" }} activeClassName="active" aria-current="page" to="/cart">
+                                <span className="nav-link p-0" style={{ marginTop: "12px" }} aria-current="page">
                                     <i
                                         className="fas fa-shopping-bag"
                                         onMouseEnter={() => setShowCart(true)}
-
                                         style={{ fontSize: "20px" }}
                                     >
                                     </i>
-                                </NavLink>
+                                </span>
                                 <span className="cart-items">
                                     {cartItems.reduce((acc, item) => acc + item.qty, 0)}
                                 </span>
                             </li>
                             <li className="nav-item d-flex">
-                                <NavLink className="nav-link p-0" style={{ marginTop: "12px" }} activeClassName="active" aria-current="page" to="/like">
+                                <Link className="nav-link p-0" style={{ marginTop: "12px" }} aria-current="page" to="/like">
                                     <i className="fas fa-heart" style={{ fontSize: "20px" }}></i>
-                                </NavLink>
+                                </Link>
                                 <span className="cart-items">
                                     {likeItems.length}
                                 </span>

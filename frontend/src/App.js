@@ -30,11 +30,13 @@ const App = () => {
 
   const [showCart, setShowCart] = useState(false)
 
+  const pathName = window.location.pathname
+
   return (
     <BrowserRouter>
       <Route render={({ history }) => <Navbar setShowCart={setShowCart} history={history} />} />
-      {showCart && <CartModal showCart={showCart} setShowCart={setShowCart} />}
-      <main className="py-5" onMouseEnter={() => setShowCart(false)}>
+      {pathName !== "/cart" && showCart && <CartModal showCart={showCart} setShowCart={setShowCart} />}
+      <main className="pt-5" onMouseEnter={() => setShowCart(false)}>
         <Route path="/" component={Home} exact />
         <Route path="/product/:id" component={ProductDetails} exact />
         <Route path="/cart/:id?" component={CartScreen} exact />
@@ -58,7 +60,7 @@ const App = () => {
         <Route path="/admin/orderlist" component={OrdersListScreen} exact />
         <Route path="/ordercreated" component={OrderCreated} exact />
         <Route path="/admin/createcategory" component={CreateCategory} exact />
-        <Route path="/like/:id?" component={LikeScreen} exact />
+        <Route path="/like" component={LikeScreen} exact />
         <Route path="/category/:name" component={CategoryScreen} exact />
         <Route path="/brand/:brand" component={BrandScreen} exact />
       </main>

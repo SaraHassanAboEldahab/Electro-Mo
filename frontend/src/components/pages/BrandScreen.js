@@ -26,14 +26,15 @@ const BrandScreen = ({ match }) => {
 
   return (
     <div className="container-fluid px-5 mt-5">
-      {error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
-        loading ? <Loader /> : oneBrand.length > 0 ?
-          <>
-            <div className="row mx-0  one-category" style={{}}>
-              <div className="col-md-3">
-                <BrandSidebar productsCategories={oneBrand} categoryName={match.params.name} />
-              </div>
-              <div className="col-md-9">
+      <>
+        <div className="row mx-0  one-category" style={{}}>
+          <div className="col-md-3">
+            <BrandSidebar productsCategories={oneBrand} brandName={match.params.brand} />
+          </div>
+
+          <div className="col-md-9">
+            {error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
+              loading ? <Loader /> : oneBrand.length > 0 ?
                 <div className="row mx-0">
                   {oneBrand.map((product) => (
                     <div key={product._id} className="col-sm-6 col-lg-3 category">
@@ -44,16 +45,18 @@ const BrandScreen = ({ match }) => {
                         id={product._id}
                         brand={product.brand}
                         countInStock={product.countInStock}
+                        discount={product.discount}
+                        isOnSale={product.isOnSale}
                         setData={setData}
                       />
                     </div>
                   ))}
-                </div>
-                <ViewModal data={data} />
-              </div>
-            </div>
-          </> : null
-      }
+                </div> : null
+            }
+            <ViewModal data={data} />
+          </div>
+        </div>
+      </>
     </div>
   )
 }
