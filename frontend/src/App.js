@@ -30,13 +30,27 @@ const App = () => {
 
   const [showCart, setShowCart] = useState(false)
 
+  const [scrollHeight, setScrollHeight] = useState(0)
+
   const pathName = window.location.pathname
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.pageYOffset;
+      setScrollHeight(position);
+    };
+    window.addEventListener("scroll", handleScroll)
+    console.log(scrollHeight)
+
+  }, [scrollHeight])
+
+
 
   return (
     <BrowserRouter>
-      <Route render={({ history }) => <Navbar setShowCart={setShowCart} history={history} />} />
+      <Route render={({ history }) => <Navbar scrollHeight={scrollHeight} setShowCart={setShowCart} history={history} />} />
       {pathName !== "/cart" && showCart && <CartModal showCart={showCart} setShowCart={setShowCart} />}
-      <main className="pt-5" onMouseEnter={() => setShowCart(false)}>
+      <main className="" onMouseEnter={() => setShowCart(false)}>
         <Route path="/" component={Home} exact />
         <Route path="/product/:id" component={ProductDetails} exact />
         <Route path="/cart/:id?" component={CartScreen} exact />

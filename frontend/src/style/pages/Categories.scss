@@ -99,6 +99,16 @@
             white-space: nowrap;
             }
           }
+          .discount{
+            position: absolute;
+            top:35%;
+            width:45px;
+            height: 45px;
+            border-radius: 50%;
+            color: white;
+            background-color: #17a2b8;
+            z-index: 900;
+        }
         img{
             width:75%;
             height: 100px;

@@ -1,35 +1,34 @@
 .navbar{
     background-color: white !important;
-    box-shadow: 1px 1px 5px 0px #dddddd, -1px -1px 5px 0px #dddddd;
-
+    //top:40px;
     .navbar-brand{
       font-weight: bolder ;
-      color:black !important; 
+      color:black !important;
+      width: fit-content;
     }
-    .navbar-toggler{
+    /*.navbar-toggler{
         color: black !important;
         background-color: black !important;
         i{
             color:#e5e7e6;
         }
-    }
+    }*/
     .form-inline{
-        width:60%;
+        width:50%;
+        height: 45px !important;
         @media (max-width: 991.98px) {
             width:50%;
         }
         .form-control{
-          width:80%;
+          width:100%;
+          height: 100% !important;
           border-radius: 50px;
           outline: 0;
           border: 2px solid #17a2b8;
-          height: 40px !important;
           padding:11px 10px 15px 15px;
-          @media (max-width: 991.98px) {
-              width:74%;
-          }
         }
         button{
+            height: 100%;
           border-bottom-right-radius: 50px;
           border-top-right-radius: 50px;
           border: none;
@@ -72,10 +71,10 @@
     height: 25px;
     width: 25px;
     border-radius: 50%;
-    background-color:#e5e7e6;
+    background-color: #17a2b8;
     display: inline-block;
     text-align: center;
-    color:  #17a2b8;
+    color:white;
     font-weight: bold;
     top:18px;
     left:-5px;
@@ -119,6 +118,22 @@
     height: fit-content;
     padding: 20px;
     right:40px;
-    top:73px;
+    top:125px;
     background-color: white;
+}
+
+.scroll::-webkit-scrollbar {
+    height: 7px;
+}
+.scroll::-webkit-scrollbar-track {
+       background-color: #f1f1f1;
+       border-radius: 10px;
+}
+.scroll::-webkit-scrollbar-thumb {
+    background: #fed700;
+    border-radius: 10px;
+  }
+
+.active-scroll{
+box-shadow: 1px 1px 5px 0px #dddddd;
 }

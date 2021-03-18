@@ -64,7 +64,9 @@ const CartModal = ({ history, showCart, setShowCart }) => {
             </div>
             <div className="d-flex">
               <h6>Total Price :</h6>
-              <span style={{ fontWeight: "bold", color: "gray" }} className="ml-auto">${cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)}</span>
+              <span style={{ fontWeight: "bold", color: "gray" }} className="ml-auto">
+                ${cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)}
+              </span>
             </div>
           </li>
           <li className="list-group-item d-flex" style={{ border: "none" }}>
