@@ -33,7 +33,7 @@ const CartModal = ({ history, showCart, setShowCart }) => {
                     <img src={item.image} alt={item.name} style={{ width: "80%" }} />
                   </div>
                   <div className="col-7 d-flex flex-column align-items-left ">
-                    <Link className="text-info mt-md-0 mt-4" to={`/product/${item.product}`} style={{ width: "100%" }}>
+                    <Link className="text-info mt-md-0" to={`/product/${item.product}`} style={{ width: "100%" }}>
                       {item.name}
                     </Link>
                     <span style={{ fontWeight: "bold", color: "gray" }}>QTY: {" "}{item.qty}</span>

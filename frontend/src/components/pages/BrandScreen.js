@@ -20,7 +20,7 @@ const BrandScreen = ({ match }) => {
 
   useEffect(() => {
     dispatch(fetchAllProducts())
-  }, [dispatch, match])
+  }, [dispatch])
 
   const oneBrand = products && products.filter(product => product.brand === match.params.brand)
 

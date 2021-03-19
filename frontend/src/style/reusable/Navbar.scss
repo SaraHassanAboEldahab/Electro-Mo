@@ -120,6 +120,10 @@
     right:40px;
     top:125px;
     background-color: white;
+    @media (max-width: 991.98px) {
+       top:220px;
+       left:20px
+    }
 }
 
 .scroll::-webkit-scrollbar {

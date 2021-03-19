@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink, Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import ScrollArea from "react-scrollbar"
 import { getUserDetails, logout } from "../../actions/userActions"
 import { fetchAllProducts } from "../../actions/productActions"
 
-const Navbar = ({ history, setShowCart, scrollHeight }) => {
+const Navbar = ({ history, setShowCart, position }) => {
 
     const [keyword, setKeyword] = useState("")
 
@@ -16,6 +16,17 @@ const Navbar = ({ history, setShowCart, scrollHeight }) => {
 
     const { cartItems } = useSelector(state => state.cart)
     const { likeItems } = useSelector((state) => state.like)
+
+    const [scrollHeight, setScrollHeight] = useState(0)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const position = window.pageYOffset;
+            setScrollHeight(position);
+        };
+        window.addEventListener("scroll", handleScroll)
+
+    }, [])
 
     const logoutHandler = () => {
         dispatch(logout())
@@ -48,24 +59,32 @@ const Navbar = ({ history, setShowCart, scrollHeight }) => {
                         <span className="mx-2">|</span>
                         <i className="fas fa-shipping-fast"></i>
                         <span className="ml-1">Track Your Order</span>
-                        <span className="mx-2">|</span>
 
-                        <Link to="/register" className="hover-color">
-                            <i className="fas fa-user hover-color" style={{ color: "black" }}></i>
-                            <span className="mx-2 hover-color" style={{ fontWeight: "400", color: "gray" }}>Register</span>
-                        </Link>
+                        {!userInfo && <>
+                            <span className="mx-2">|</span>
+                            <Link to="/register" className="hover-color">
+                                <i className="fas fa-user hover-color" style={{ color: "black" }}></i>
+                                <span className="mx-2 hover-color" style={{ fontWeight: "400", color: "gray" }}>
+                                    Register
+                            </span>
+                            </Link>
                         Or
                         <Link to="/login">
-                            <span className="ml-1 hover-color" style={{ fontWeight: "400", color: "gray" }}>Sign In</span>
-                        </Link>
+                                <span className="ml-1 hover-color" style={{ fontWeight: "400", color: "gray" }}>
+                                    Sign In
+                            </span>
+                            </Link>
+                        </>
+                        }
                         <span className="mx-2">|</span>
                         <i className="fas fa-globe text-info" style={{ fontSize: "20px" }}></i>
                     </div>
-                </div>}
+                </div>
+                }
 
-                <nav className={scrollHeight === 0 ?
-                    "navbar navbar-expand-lg navbar-light px-0 py-4"
-                    : "navbar navbar-expand-lg navbar-light py-4 px-5 fixed-top active-scroll"
+                <nav className={scrollHeight > 0 ?
+                    "navbar navbar-expand-lg navbar-light py-3 px-5 fixed-top active-scroll " :
+                    "navbar navbar-expand-lg navbar-light px-0 py-3 "
                 }>
 
                     <Link className="navbar-brand mr-md-5" to="/">
@@ -153,15 +172,15 @@ const Navbar = ({ history, setShowCart, scrollHeight }) => {
                                 </li> : <div className="d-flex  d-lg-none mt-4">
                                     <i className="fas fa-user" style={{ color: "black", fontSize: "24px" }}></i>
                                     <Link to="/register">
-                                        <span className="mx-2 hover-color" style={{ fontWeight: "400", color: "gray" }}>Register</span>
+                                        <span className="mx-2 hover-color" style={{ fontWeight: "400", color: "black" }}>Register</span>
                                     </Link>
-                                    <strong>Or</strong>
+                                    <span>Or</span>
                                     <Link to="/login">
-                                        <span className="ml-1 hover-color" style={{ fontWeight: "400", color: "gray" }}>Sign In</span>
+                                        <span className="ml-1 hover-color" style={{ fontWeight: "400", color: "black" }}>Sign In</span>
                                     </Link>
                                 </div>
                             }
-                            <li className="nav-item mr-lg-3 d-flex mb-2 mt-2">
+                            <li className="nav-item mr-lg-3 d-flex mb-2 ">
                                 <Link className="nav-link p-0" style={{ marginTop: "12px" }} aria-current="page" to="/like">
                                     <i className="fas fa-heart" style={{ fontSize: "24px" }}></i>
                                 </Link>
@@ -169,7 +188,7 @@ const Navbar = ({ history, setShowCart, scrollHeight }) => {
                                     {likeItems.length}
                                 </span>
                             </li>
-                            <li className="nav-item  d-flex mt-2">
+                            <li className="nav-item  d-flex">
                                 <span className="nav-link p-0" style={{ marginTop: "12px" }} aria-current="page">
                                     <i
                                         className="fas fa-shopping-bag"
@@ -206,40 +225,61 @@ const Navbar = ({ history, setShowCart, scrollHeight }) => {
                 </nav>
                 {scrollHeight === 0 && <ul className="d-flex scroll mt-3 px-2" style={{ width: "100%", overflowX: "scroll" }} >
                     <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
-                        <i className="fas fa-laptop  mr-3 mt-1"></i>
-                        <span>Computers & Laptops</span>
-                    </li>
-                    <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
-                        <i className="fas fa-camera-retro  mr-3 mt-1"></i>
-                        <span> Cameras</span>
-                    </li>
-                    <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
-                        <i className="fas fa-mobile-alt  mr-3 mt-1"></i>
-                        <span>Smart Phones & Tablets</span>
-                    </li>
-                    <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
-                        <i className="fas fa-gamepad  mr-3 mt-1"></i>
-                        <span>Gaming</span>
+                        <Link to="/category/Computers & Laptops" style={{ fontWeight: "400", color: "gray" }}>
+                            <i className="fas fa-laptop  mr-3 mt-1"></i>
+                            <span>Computers & Laptops</span>
+                        </Link>
                     </li>
 
                     <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
-                        <i className="fab fa-youtube-square  mr-3 mt-1"></i>
-                        <span>TV & Audio</span>
+                        <Link to="/category/Accessories" style={{ fontWeight: "400", color: "gray" }}>
+                            <i className="fas fa-camera-retro  mr-3 mt-1"></i>
+                            <span> Cameras</span>
+                        </Link>
                     </li>
 
                     <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
-                        <i className="fas fa-headphones-alt  mr-3 mt-1"></i>
-                        <span>Headphones</span>
+                        <Link to="/category/Smartphones & Tablets" style={{ fontWeight: "400", color: "gray" }}>
+                            <i className="fas fa-mobile-alt  mr-3 mt-1"></i>
+                            <span>Smart Phones & Tablets</span>
+                        </Link>
+                    </li>
+
+                    <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
+                        <Link to="/category/Accessories" style={{ fontWeight: "400", color: "gray" }}>
+                            <i className="fas fa-gamepad  mr-3 mt-1"></i>
+                            <span>Gaming</span>
+                        </Link>
+                    </li>
+
+                    <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
+                        <Link to="/category/Accessories" style={{ fontWeight: "400", color: "gray" }}>
+                            <i className="fab fa-youtube-square  mr-3 mt-1"></i>
+                            <span>TV & Audio</span>
+                        </Link>
+                    </li>
+
+                    <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
+                        <Link to="/category/Computers & Laptops" style={{ fontWeight: "400", color: "gray" }}>
+                            <i className="far fa-keyboard mr-3 mt-1"></i>
+                            <span>Keyboards</span>
+                        </Link>
+                    </li>
+
+                    <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
+                        <Link to="/category/Accessories" style={{ fontWeight: "400", color: "gray" }}>
+                            <i className="fas fa-headphones-alt  mr-3 mt-1"></i>
+                            <span>Headphones</span>
+                        </Link>
                     </li>
                     <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
-                        <i className="far fa-keyboard mr-3 mt-1"></i>
-                        <span>Keyboards</span>
+                        <Link to="/category/Accessories" style={{ fontWeight: "400", color: "gray" }}>
+                            <i className="far fa-object-group  mr-3 mt-1"></i>
+                            <span>Accessories</span>
+                        </Link>
                     </li>
-                    <li className="d-flex ml-5 mb-2" style={{ minWidth: "fit-content", color: "gray" }}>
-                        <i className="far fa-object-group  mr-3 mt-1"></i>
-                        <span>Accessories</span>
-                    </li>
-                </ul>}
+                </ul>
+                }
             </div>
         </div >
     )

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { fetchAllProducts } from "../../actions/productActions"
-import { Link } from "react-router-dom"
 import ErrorMessage from "../subComponents/ErrorMessage"
 import Loader from "../subComponents/Loader"
 import TrendCard from "../subComponents/TrendCard"
@@ -21,7 +20,7 @@ const CategoryScreen = ({ match }) => {
 
   useEffect(() => {
     dispatch(fetchAllProducts())
-  }, [dispatch, match])
+  }, [dispatch])
 
   const oneCategory = products && products.filter(product => product.category.name === match.params.name)
 

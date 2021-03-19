@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { fetchProductsList, fetchAllProducts } from "../../actions/productActions"
 import { fetchCategories } from "../../actions/categoryActions"
+import { Link } from "react-router-dom"
 
 //components importing
 import ProductCard from "../subComponents/ProductCard"
@@ -48,29 +49,33 @@ const Home = ({ match }) => {
                                             <div className="carousel-item active">
                                                 <img src="/images/screen.jpg" className="d-block w-100" alt="..." style={{ backgroundSize: "cover" }} />
                                                 <div className="carousel-caption text-left">
-                                                    <h3 className="animate__animated animate__pulse animate__duration-4s">ENHANCE YOUR </h3>
-                                                    <h3 className="animate__animated animate__bounceInLeft animate__duration-4s">ENTERTAINMENT </h3>
-                                                    <div className="d-flex animate__animated animate__bounceInRight animate__duration-4s">
+                                                    <h3 className="animate__animated animate__pulse animate__slow">ENHANCE YOUR </h3>
+                                                    <h3 className="animate__animated animate__bounceInLeft animate__slow">ENTERTAINMENT </h3>
+                                                    <div className="d-flex animate__animated animate__bounceInRight animate__slower">
                                                         <span className="mt-3">LAST CALL FOR UP TO </span>
                                                         <span>$</span>
                                                         <h2>250</h2>
                                                         <span className="mt-3">OFF!</span>
                                                     </div>
-                                                    <button className="btn btn-info">Shop Now</button>
+                                                    <button className="btn btn-info">
+                                                        <Link to="/categories" className="text-light">Shop Now</Link>
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div className="carousel-item">
                                                 <img src="/images/mac.jpg" className="d-block w-100" alt="..." style={{ backgroundSize: "cover" }} />
                                                 <div className="carousel-caption  text-left">
-                                                    <h3 className="animate__animated animate__pulse animate__duration-2s">ENHANCE YOUR </h3>
-                                                    <h3 className="animate__animated animate__bounceInLeft animate__duration-2s">ENTERTAINMENT </h3>
-                                                    <div className="d-flex animate__animated animate__bounceInRight animate__duration-2s">
+                                                    <h3 className="animate__animated animate__pulse animate__slow">ENHANCE YOUR </h3>
+                                                    <h3 className="animate__animated animate__bounceInLeft animate__slow">ENTERTAINMENT </h3>
+                                                    <div className="d-flex animate__animated animate__bounceInRight animate__slow">
                                                         <span className="mt-3">LAST CALL FOR UP TO </span>
                                                         <span>$</span>
                                                         <h2>250</h2>
                                                         <span className="mt-3">OFF!</span>
                                                     </div>
-                                                    <button className="btn btn-info">Shop Now</button>
+                                                    <button className="btn btn-info">
+                                                        <Link to="/categories" className="text-light">Shop Now</Link>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
