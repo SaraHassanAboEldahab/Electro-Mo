@@ -11,15 +11,15 @@ const FeaturedProducts = ({ products }) => {
 
     return (
 
-        <div className="row mx-0 " style={{ marginTop: "120px" }}>
+        <div className="row mx-0 " style={{ marginTop: "150px" }}>
             <div className="col-lg-3 order-lg-1 order-2">
                 <h6 className="head">Featured products</h6>
-                <hr />
+                <hr style={{ marginBottom: "50px" }} />
                 {products.map((product, index) => {
                     if (0 < index && index < 4) {
                         return (
                             <Link key={product._id} to={`/product/${product._id}`}>
-                                <div key={index} className="media mb-1 mb-lg-3" style={{ height: "150px" }}>
+                                <div key={index} className="media  mb-1 mb-lg-3" style={{ height: "150px" }}>
                                     <img style={{ width: "70px", height: "70px" }} src={product.image} alt="..." />
                                     <div className="media-body pl-2">
                                         <h6 className="text-info">{product.name}</h6>
@@ -40,7 +40,7 @@ const FeaturedProducts = ({ products }) => {
             </div>
             <div className="col-lg-3 order-lg-2 order-3">
                 <h6 className="head">Top Rated Products</h6>
-                <hr />
+                <hr style={{ marginBottom: "50px" }} />
                 {topProducts.map((product, index) => {
                     if (index < 3) {
                         return (
@@ -66,7 +66,7 @@ const FeaturedProducts = ({ products }) => {
             </div>
             <div className="col-lg-3 order-lg-3 order-4">
                 <h6 className="head ">Onsale Products</h6>
-                <hr />
+                <hr style={{ marginBottom: "50px" }} />
                 {onSaleProducts.map((product, index) => {
                     if (index < 3) {
                         return (
@@ -90,8 +90,8 @@ const FeaturedProducts = ({ products }) => {
                     }
                 })}
             </div>
-            <div className="col-lg-3 order-lg-4 order-1 text-center">
-                <img style={{ width: "80%", height: "80%" }} src="/images/v2-right-1_320x.jpg" alt="..." />
+            <div className="d-none d-lg-block col-lg-3 order-lg-4 order-1 text-center">
+                <img style={{ marginTop: "20%", width: "", height: "" }} src="/images/g.jpg" alt="..." />
             </div>
         </div>
     )

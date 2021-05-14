@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { addToCart, removeFromCart } from "../../actions/cartActions"
+import { fetchAllProducts } from "../../actions/productActions"
 import { Link } from "react-router-dom"
 import ErrorMessage from '../subComponents/ErrorMessage'
+import FeaturedProducts from "../subComponents/FeaturedProducts"
+import Footer from '../reusable/Footer'
+import Loader from "../subComponents/Loader"
 
 
 const CartScreen = ({ match, location, history }) => {
@@ -13,10 +17,13 @@ const CartScreen = ({ match, location, history }) => {
 
     const dispatch = useDispatch()
 
-    const { userInfo } = useSelector(state => state.userLogin)
     const { cartItems } = useSelector((state) => state.cart)
 
+    const allProducts = useSelector((state) => state.allProducts)
+    const { loading, error, products: allProductsList } = allProducts
+
     useEffect(() => {
+        dispatch(fetchAllProducts())
         if (productId) {
             dispatch(addToCart(productId, qty))
         }
@@ -31,7 +38,7 @@ const CartScreen = ({ match, location, history }) => {
     }
     return (
         <div className="container">
-            <h3 className="head  mt-4" style={{ marginBottom: "70px" }}>Shopping Cart</h3>
+            <h3 className="head  mt-5" style={{ marginBottom: "70px" }}>Shopping Cart</h3>
             {cartItems.length === 0 ?
                 <h6 className="ml-auto mt-3 mb-0">
                     <ErrorMessage>Your Cart Is Empty</ErrorMessage>
@@ -85,27 +92,34 @@ const CartScreen = ({ match, location, history }) => {
                 </>)
             }
             <hr />
-            <div className="row mx-0">
-                <ul className="list-group list-group-flush" style={{ width: "100%" }}>
-                    <li className="list-group-item" style={{ border: "none" }}>
-                        <div></div>
-                        <h5>Total Items : <span style={{ fontWeight: "bold", color: "gray" }}>{cartItems.reduce((acc, item) => acc + item.qty, 0)}</span></h5>
-                        <h5>Total price : <span style={{ fontWeight: "bold", color: "gray" }}>${cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)}</span> </h5>
-                    </li>
-                    <li className="list-group-item" style={{ border: "none" }}>
-                        <Link
-                            to="/information"
-                            onClick={() => checkOutHandler}
-                            className="btn btn-info"
-                            disabled={cartItems.length === 0}
-                            type="button"
-                            style={{ height: "40px", width: "20%", fontWeight: "bold" }}
-                        >
-                            Check Out
+            {cartItems.length !== 0 &&
+                <div className="row mx-0">
+                    <ul className="list-group list-group-flush" style={{ width: "100%" }}>
+                        <li className="list-group-item" style={{ border: "none" }}>
+                            <div></div>
+                            <h5>Total Items : <span style={{ fontWeight: "bold", color: "gray" }}>{cartItems.reduce((acc, item) => acc + item.qty, 0)}</span></h5>
+                            <h5>Total price : <span style={{ fontWeight: "bold", color: "gray" }}>${cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)}</span> </h5>
+                        </li>
+                        <li className="list-group-item" style={{ border: "none" }}>
+                            <Link
+                                to="/information"
+                                onClick={() => checkOutHandler}
+                                className="btn btn-info"
+                                disabled={cartItems.length === 0}
+                                type="button"
+                                style={{ height: "40px", width: "30%", fontWeight: "bold" }}
+                            >
+                                Check Out
                         </Link>
-                    </li>
-                </ul>
-            </div>
+                        </li>
+                    </ul>
+                </div>
+            }
+            {loading ? <Loader /> : error ? <ErrorMessage variant="danger">{error}</ErrorMessage>
+                : allProductsList.length > 0 ? (
+                    <FeaturedProducts products={allProductsList} />
+                ) : null
+            }
         </div>
     )
 }

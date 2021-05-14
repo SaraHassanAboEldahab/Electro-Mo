@@ -15,20 +15,16 @@ import Footer from '../reusable/Footer'
 
 
 const Home = ({ match }) => {
-    const keyword = match.params.keyword
     const dispatch = useDispatch()
-    const productsList = useSelector((state) => state.productsList)
-    const { loading, error, products } = productsList
 
     const categoriesList = useSelector(state => state.categoriesList)
     const { categories } = categoriesList
 
     const allProducts = useSelector((state) => state.allProducts)
-    const { products: allProductsList } = allProducts
+    const { loading, error, products } = allProducts
 
     useEffect(() => {
         dispatch(fetchCategories())
-        dispatch(fetchProductsList(keyword))
         dispatch(fetchAllProducts())
     }, [dispatch])
 
@@ -172,8 +168,8 @@ const Home = ({ match }) => {
                                     </div>
                                 </div>
                             </div>
-                            {categories.length > 0 && <SpecificProducts categories={categories} productsBrands={allProductsList} />}
-                            <FeaturedProducts products={allProductsList} />
+                            {categories.length > 0 && <SpecificProducts categories={categories} productsBrands={products} />}
+                            <FeaturedProducts products={products} />
                         </div>
                         <Footer categories={categories} />
                     </>

@@ -13,14 +13,13 @@ const CategoryScreen = ({ match }) => {
   const [data, setData] = useState({})
 
   const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchAllProducts())
+
+  }, [dispatch])
 
   const allProducts = useSelector((state) => state.allProducts)
   const { loading, error, products } = allProducts
-
-
-  useEffect(() => {
-    dispatch(fetchAllProducts())
-  }, [dispatch])
 
   const oneCategory = products && products.filter(product => product.category.name === match.params.name)
 

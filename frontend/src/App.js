@@ -19,7 +19,7 @@ import ProductEditScreen from './components/pages/ProductEditScreen'
 import ProductCreateScreen from './components/pages/ProductCreateScreen'
 import UserEditScreen from './components/pages/UserEditScreen'
 import OrdersListScreen from "./components/pages/OrdersListScreen"
-import OrderCreated from './components/pages/OrderCreated'
+import UserOrders from './components/pages/UserOrders'
 import CreateCategory from './components/pages/CreateCategory'
 import LikeScreen from "./components/pages/LikeScreen"
 import CategoryScreen from './components/pages/CategoryScreen'
@@ -58,7 +58,7 @@ const App = () => {
         <Route path="/search/:keyword/page/:pageNumber" component={Categories} exact />
         <Route path="/admin/user/:id/edit" component={UserEditScreen} exact />
         <Route path="/admin/orderlist" component={OrdersListScreen} exact />
-        <Route path="/ordercreated" component={OrderCreated} exact />
+        <Route path="/orders" component={UserOrders} exact />
         <Route path="/admin/createcategory" component={CreateCategory} exact />
         <Route path="/like" component={LikeScreen} exact />
         <Route path="/category/:name" component={CategoryScreen} exact />

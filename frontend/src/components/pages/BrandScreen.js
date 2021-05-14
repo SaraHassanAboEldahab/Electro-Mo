@@ -14,13 +14,12 @@ const BrandScreen = ({ match }) => {
   const [data, setData] = useState({})
 
   const dispatch = useDispatch()
-
-  const allProducts = useSelector((state) => state.allProducts)
-  const { loading, error, products } = allProducts
-
   useEffect(() => {
     dispatch(fetchAllProducts())
   }, [dispatch])
+
+  const allProducts = useSelector((state) => state.allProducts)
+  const { loading, error, products } = allProducts
 
   const oneBrand = products && products.filter(product => product.brand === match.params.brand)
 

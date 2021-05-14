@@ -40,7 +40,7 @@ const OrderScreen = ({ match, history }) => {
 
     return error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
         loading ? <Loader /> :
-            <div className="container px-lg-0">
+            <div className="container px-lg-0" style={{ paddingBottom: "100px" }}>
                 <div className="row mx-0 pt-4">
                     <div className="col-lg-7">
                         <h5 className="head">Order:{" "} {orderId}</h5>

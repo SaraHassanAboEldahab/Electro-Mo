@@ -47,7 +47,7 @@ const Information = ({ history }) => {
     }
 
     return (
-        <div className="container">
+        <div className="container" style={{ paddingBottom: "100px" }}>
             <CheckSteps step1 step2 />
             <div className="row mx-0 pt-3">
                 <div className="col-lg-6 pt-4">

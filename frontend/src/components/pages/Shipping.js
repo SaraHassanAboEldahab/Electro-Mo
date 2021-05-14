@@ -21,7 +21,7 @@ const Shipping = ({ history }) => {
         history.push("/payment")
     }
     return (
-        <div className="container">
+        <div className="container" style={{ paddingBottom: "50px" }}>
             <CheckSteps step1 step2 step3 />
             <div className="row mx-0">
                 <div className="col-lg-6">
@@ -29,7 +29,7 @@ const Shipping = ({ history }) => {
                         <div className="row">
                             <div className="col-3">
                                 Contact :
-                    </div>
+                            </div>
                             <div className="col-6">
                                 {userInfo.email}
                             </div>
@@ -38,7 +38,7 @@ const Shipping = ({ history }) => {
                         <div className="row">
                             <div className="col-3">
                                 Ship To :
-                        </div>
+                            </div>
                             <div className="col-6">
                                 {cart.shippingAddress.address} ,{cart.shippingAddress.country}                        </div>
                         </div>

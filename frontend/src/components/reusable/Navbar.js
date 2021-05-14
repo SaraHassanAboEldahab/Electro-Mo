@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { NavLink, Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import ScrollArea from "react-scrollbar"
 import { getUserDetails, logout } from "../../actions/userActions"
 import { fetchAllProducts } from "../../actions/productActions"
 
@@ -19,12 +18,19 @@ const Navbar = ({ history, setShowCart, position }) => {
 
     const [scrollHeight, setScrollHeight] = useState(0)
 
+    const scrollRef = useRef()
+
     useEffect(() => {
         const handleScroll = () => {
             const position = window.pageYOffset;
             setScrollHeight(position);
+            console.log(position)
         };
         window.addEventListener("scroll", handleScroll)
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+        }
 
     }, [])
 
@@ -138,6 +144,11 @@ const Navbar = ({ history, setShowCart, position }) => {
                                                 //onClick={() => dispatch(getUserDetails("profile"))}
                                                 >
                                                     Profile
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link className="dropdown-item" to="/orders">
+                                                    Orders
                                                 </Link>
                                             </li>
                                             <li>

@@ -40,7 +40,7 @@ const PaymentScreen = ({ history, match }) => {
             totalPrice: cart.totalPrice,
             shippingMethod: cart.shippingMethod,
         }))
-        history.push(`/ordercreated`)
+        history.push(`/orders`)
     }
 
     return (
