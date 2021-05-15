@@ -25,7 +25,7 @@ const UserOrders = ({ match, history }) => {
 
     return error ? <ErrorMessage variant="danger">{error}</ErrorMessage> :
         loading ? <Loader /> :
-            <div className="container" style={{ minHeight: "700px" }}>
+            <div className="container" >
                 <h4 className="head mt-5">Your Orders</h4>
                 <Table striped bordered hover responsive className="table-sm text-center" style={{ marginTop: "40px" }}>
                     <thead>

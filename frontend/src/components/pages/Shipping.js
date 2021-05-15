@@ -21,7 +21,7 @@ const Shipping = ({ history }) => {
         history.push("/payment")
     }
     return (
-        <div className="container" style={{ paddingBottom: "50px" }}>
+        <div className="container" >
             <CheckSteps step1 step2 step3 />
             <div className="row mx-0">
                 <div className="col-lg-6">
