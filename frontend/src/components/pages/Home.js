@@ -53,9 +53,11 @@ const Home = ({ match }) => {
                                                         <h2>250</h2>
                                                         <span className="mt-3">OFF!</span>
                                                     </div>
-                                                    <button className="btn btn-info">
-                                                        <Link to="/categories" className="text-light">Shop Now</Link>
-                                                    </button>
+                                                    <Link to="/categories" className="text-light">
+                                                        <button className="btn btn-info">
+                                                            Shop Now
+                                                        </button>
+                                                    </Link>
                                                 </div>
                                             </div>
                                             <div className="carousel-item">
