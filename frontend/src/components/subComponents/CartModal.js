@@ -7,6 +7,8 @@ import ErrorMessage from '../subComponents/ErrorMessage'
 
 const CartModal = ({ history, showCart, setShowCart }) => {
 
+  const position = window.pageYOffset;
+
   const dispatch = useDispatch()
 
   const { cartItems } = useSelector((state) => state.cart)
@@ -19,7 +21,9 @@ const CartModal = ({ history, showCart, setShowCart }) => {
     history.push("/information")
   }
   return (
-    <div className="cart-modal" >
+    <div className="cart-modal"
+      style={{ top: position > 0 ? "80px" : "125px" }}
+      onMouseEnter={() => setShowCart(true)} >
       {cartItems.length === 0 ?
         <h6 className="ml-auto mt-3 mb-0">
           <ErrorMessage>Your Cart Is Empty</ErrorMessage>

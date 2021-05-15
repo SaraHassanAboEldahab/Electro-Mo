@@ -21,7 +21,6 @@ const Navbar = ({ history, setShowCart, position }) => {
         const handleScroll = () => {
             const position = window.pageYOffset;
             setScrollHeight(position);
-            console.log(position)
         };
         window.addEventListener("scroll", handleScroll)
 
@@ -85,7 +84,7 @@ const Navbar = ({ history, setShowCart, position }) => {
                 </div>
                 }
 
-                <nav className={scrollHeight > 5 ?
+                <nav className={scrollHeight > 0 ?
                     "navbar navbar-expand-lg navbar-light py-3 px-5 fixed-top active-scroll " :
                     "navbar navbar-expand-lg navbar-light px-0 py-3 "
                 }>
