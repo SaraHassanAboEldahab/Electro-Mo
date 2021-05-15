@@ -17,9 +17,6 @@ const Navbar = ({ history, setShowCart, position }) => {
     const { likeItems } = useSelector((state) => state.like)
 
     const [scrollHeight, setScrollHeight] = useState(0)
-
-    const scrollRef = useRef()
-
     useEffect(() => {
         const handleScroll = () => {
             const position = window.pageYOffset;
@@ -32,7 +29,7 @@ const Navbar = ({ history, setShowCart, position }) => {
             window.removeEventListener("scroll", handleScroll)
         }
 
-    }, [])
+    }, [position])
 
     const logoutHandler = () => {
         dispatch(logout())
@@ -88,7 +85,7 @@ const Navbar = ({ history, setShowCart, position }) => {
                 </div>
                 }
 
-                <nav className={scrollHeight > 0 ?
+                <nav className={scrollHeight > 5 ?
                     "navbar navbar-expand-lg navbar-light py-3 px-5 fixed-top active-scroll " :
                     "navbar navbar-expand-lg navbar-light px-0 py-3 "
                 }>

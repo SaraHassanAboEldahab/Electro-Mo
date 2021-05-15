@@ -85,7 +85,9 @@ const LikeScreen = ({ }) => {
                     type="button"
                     disabled={item.countInStock === 0}
                     onClick={() => dispatch(addToCart(item.product, 1))}
-                    className="btn btn-light mb-md-0 mb-4  mt-3 ml-auto ml-md-0 w-100 w-md-75" style={{ borderRadius: "20px" }}>Add To Cart</button>
+                    className="btn btn-light mb-md-0 mb-4  mt-3 ml-auto ml-md-0 w-100 w-md-75" style={{ borderRadius: "20px" }}>
+                    Add To Cart
+                  </button>
                 </div>
               </div>
             </li>
